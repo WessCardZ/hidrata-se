@@ -47,46 +47,20 @@ const style = StyleSheet.create({
     },
     containerInferior: {
         flex: 6.5,
-        backgroundColor: '#6DC1F2'
+        backgroundColor: '#6DC1F2',
+        paddingTop: 18
     },
 
-    horario: {
-        height: 66,
-        marginTop: 46,
-        marginLeft: 16,
-        marginRight: 16,
-    },
-
-    lembretes: {
+    grupoPerfil: {
+        flexDirection: 'row',
         height: 66,
         marginTop: 28,
         marginLeft: 16,
-        marginRight: 16,
-    },
-
-    meta: {
-        height: 66,
-        marginTop: 28,
-        marginLeft: 16,
-        marginRight: 16,
-    },
-
-    peso: {
-        height: 66,
-        marginTop: 28,
-        marginLeft: 16,
-        marginRight: 16,
-    },
-
-    som: {
-        height: 66,
-        marginTop: 28,
-        marginLeft: 16,
-        marginRight: 16,
     },
     grupoTexto: {
-        height: 51,
-        justifyContent: 'space-between'
+        width: 310,
+        height: 66,
+        justifyContent: 'space-evenly',
     },
     titulo: {
         color: '#fff',
@@ -96,7 +70,7 @@ const style = StyleSheet.create({
     subtitulo: {
         color: '#5992B2',
         fontSize: 12,
-        fontFamily: 'Montserrat_700Bold'
+        fontFamily: 'Montserrat_400Regular'
     },
 
 })
