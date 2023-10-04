@@ -55,7 +55,6 @@ const style = StyleSheet.create({
         flexDirection: 'row',
         height: 66,
         marginTop: 28,
-        marginLeft: 16,
     },
     grupoTexto: {
         width: 310,

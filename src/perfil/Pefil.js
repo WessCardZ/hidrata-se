@@ -1,7 +1,7 @@
 import { Text, View } from "react-native";
-import { FontAwesome } from '@expo/vector-icons'
 import { useFonts, Montserrat_700Bold, Montserrat_400Regular } from "@expo-google-fonts/montserrat";
 import style from './style'
+import { IconButton } from "react-native-paper";
 
 export default function Perfil() {
 
@@ -29,12 +29,12 @@ export default function Perfil() {
 
             <View style={style.containerInferior}>
                 <Lista
-                    nomeIcone='check'
+                    nomeIcone='clock-outline'
                     titulo='Horários de dormir e acordar'
                     subtitulo='Poderá modificar o horário de acordar e dormir'
                 />
                 <Lista
-                    nomeIcone='bell'
+                    nomeIcone='bell-outline'
                     titulo='Lembretes'
                     subtitulo='Poderá modificar o horário que será notificado para beber água'
                 />
@@ -44,12 +44,12 @@ export default function Perfil() {
                     subtitulo='Poderá modificar o seu consumo ideal de acordo com sua preferência'
                 />
                 <Lista
-                    nomeIcone='check'
+                    nomeIcone='square-edit-outline'
                     titulo='Peso'
                     subtitulo='Poderá modificar o seu peso'
                 />
                 <Lista
-                    nomeIcone='check'
+                    nomeIcone='volume-high'
                     titulo='Sons e Vibração'
                     subtitulo='Poderá modificar se deseja uma notificção com som ou com vibração'
                 />
@@ -61,8 +61,8 @@ export default function Perfil() {
 const Lista = ({ titulo, subtitulo, nomeIcone }) => {
     return (
         <View style={style.grupoPerfil}>
-            <View style={{ justifyContent: 'center', paddingRight: 16 }}>
-                <FontAwesome name={nomeIcone} size={24} color={'#fff'} />
+            <View style={{ justifyContent: 'center' }}>
+                <IconButton icon={nomeIcone} size={30} iconColor="#fff" />
             </View>
             <View style={style.grupoTexto}>
                 <Text style={style.titulo}>{titulo}</Text>
