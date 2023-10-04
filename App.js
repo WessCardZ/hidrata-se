@@ -1,11 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
-import Perfil from './src/perfil/Pefil'
+import Perfil from './src/perfil/Pefil';
+import Historico from './src/historico/Histrico';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Perfil />
+      <Historico/>
       <StatusBar style="auto" />
     </View>
   );
