@@ -4,12 +4,12 @@ const style = StyleSheet.create({
     container: {
       flex:1,
       backgroundColor: '#6DC1F2',
-      paddingTop: 55,
+      paddingTop: 40,
       borderWidth: 10,
     },
     textoregistro: {
     paddingTop: 5,
-    paddingBottom: 14,
+    paddingBottom: 16,
     paddingLeft: 155,
     color: 'white',
     fontSize: 16,
@@ -17,27 +17,19 @@ const style = StyleSheet.create({
     },
     containermeio: {
         flex: 1,
-        backgroundColor: '#1897F2',
+        paddingTop: 28,
         borderTopLeftRadius: 15,
         borderTopRightRadius: 15,
+        backgroundColor: '#1897F2',
     },
     listahistorico: {
-        borderWidth: 4,
+        borderRadius: 10,
         backgroundColor: '#61B5F2',
-        paddingTop: 14,
+        marginTop: 9,
+        paddingTop: 15,
         paddingLeft: 5,
         paddingBottom: 14,
-        borderRadius: 10,
-        borderLeftWidth: 3,
-        borderRightWidth: 3,
-        borderLeftColor: '#1897F2',
-        borderRightColor: '#1897F2',
-        borderTopColor: '#1897F2',
-        borderBottomColor: '#1897F2',
-    },
-    historico: {
-        flex: 18,
-        backgroundColor: '#1897F2',
+        marginHorizontal: 4,
     },
     ml: {
         color: 'white',
@@ -48,7 +40,13 @@ const style = StyleSheet.create({
         color: '#CCCCCC',
         fontSize: 12,
         fontFamily: 'Montserrat_700Bold',
-    }
+    },
+    iconContainer: {
+        flexDirection: 'row', 
+        justifyContent: 'space-between',
+        right: 10,
+        position: 'absolute'
+      },
   });
 
 

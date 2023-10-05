@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import Perfil from './src/perfil/Pefil';
 import Historico from './src/historico/Histrico';
+import HistoricoScreen from './src/historico/Histrico';
 
 export default function App() {
   return (

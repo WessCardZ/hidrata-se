@@ -1,66 +1,143 @@
-import { View, Text, StyleSheet} from 'react-native'
-import React from 'react'
-import { FontAwesome } from '@expo/vector-icons'
+import React from 'react';
+import { View, Text, FlatList } from 'react-native';
 import { useFonts, Montserrat_700Bold, Montserrat_400Regular } from "@expo-google-fonts/montserrat";
-import style from './style1';
+import { IconButton } from "react-native-paper";
+import style from './style1'; 
 
+
+const DATA = [
+  {
+    id: '1',
+    ml: '250 ML',
+    hora: '19:35',
+    nomeIcone: 'pencil-outline',
+    nomeIcone2: 'trash-can-outline',
+  },
+  {
+    id: '2',
+    ml: '350 ML',
+    hora: '21:35',
+    nomeIcone: 'pencil-outline',
+    nomeIcone2: 'trash-can-outline',
+  },
+  {
+    id: '3',
+    ml: '500 ML',
+    hora: '07:38',
+    nomeIcone: 'pencil-outline',
+    nomeIcone2: 'trash-can-outline',
+  },
+  {
+    id: '4',
+    ml: '100 ML',
+    hora: '8:35',
+    nomeIcone: 'pencil-outline',
+    nomeIcone2: 'trash-can-outline',
+  },
+  {
+    id: '5',
+    ml: '425 ML',
+    hora: '11:35',
+    nomeIcone: 'pencil-outline',
+    nomeIcone2: 'trash-can-outline',
+  },
+  {
+    id: '6',
+    ml: '265 ML',
+    hora: '12:30',
+    nomeIcone: 'pencil-outline',
+    nomeIcone2: 'trash-can-outline',
+  },
+  {
+    id: '7',
+    ml: '220 ML',
+    hora: '13:30',
+    nomeIcone: 'pencil-outline',
+    nomeIcone2: 'trash-can-outline',
+  },
+  {
+    id: '8',
+    ml: '320 ML',
+    hora: '15:10',
+    nomeIcone: 'pencil-outline',
+    nomeIcone2: 'trash-can-outline',
+  },
+  {
+    id: '9',
+    ml: '110 ML',
+    hora: '17:10',
+    nomeIcone: 'pencil-outline',
+    nomeIcone2: 'trash-can-outline',
+  },
+  {
+    id: '10',
+    ml: '150 ML',
+    hora: '19:45',
+    nomeIcone: 'pencil-outline',
+    nomeIcone2: 'trash-can-outline',
+  },
+  {
+    id: '11',
+    ml: '75 ML',
+    hora: '20:10',
+    nomeIcone: 'pencil-outline',
+    nomeIcone2: 'trash-can-outline',
+  },
+  {
+    id: '12',
+    ml: '55 ML',
+    hora: '20:30',
+    nomeIcone: 'pencil-outline',
+    nomeIcone2: 'trash-can-outline',
+  },
+  {
+    id: '13',
+    ml: '130 ML',
+    hora: '21:45',
+    nomeIcone: 'pencil-outline',
+    nomeIcone2: 'trash-can-outline',
+  },
+  {
+    id: '14',
+    ml: '50 ML',
+    hora: '22:10',
+    nomeIcone: 'pencil-outline',
+    nomeIcone2: 'trash-can-outline',
+  },
+  {
+    id: '15',
+    ml: '150 ML',
+    hora: '19:45',
+    nomeIcone: 'pencil-outline',
+    nomeIcone2: 'trash-can-outline',
+  },
+];
+
+const Item = ({ ml, hora, nomeIcone, nomeIcone2 }) => (
+  <View style={style.listahistorico}>
+    <View style={style.textContainer}>
+      <Text style={style.ml}>{ml}</Text>
+      <Text style={style.hora}>{hora}</Text>
+    </View>
+    <View style={style.iconContainer}>
+      <IconButton icon={nomeIcone} size={30} iconColor="#fff" />
+      <IconButton icon={nomeIcone2} size={30} iconColor="#fff" />
+    </View>
+  </View>
+);
 
 const Historico = () => {
   return (
     <View style={style.container}>
       <Text style={style.textoregistro}>Registros</Text>
-
-      <View style={style.containermeio}/>
-      <View style={style.historico}>
-                <Lista
-                    ml='250 ML'
-                    hora='19:35'
-                />
-                 <Lista
-                    ml='350 ML'
-                    hora='21:35'
-                />
-                 <Lista
-                    ml='500 ML'
-                    hora='07:38'
-                />
-                 <Lista
-                    ml='100 ML'
-                    hora='8:35'
-                />
-                 <Lista
-                    ml='425 ML'
-                    hora='11:35'
-                />
-                 <Lista
-                    ml='265 ML'
-                    hora='12:30'
-                />
-                
-            </View>
-
-
+      <View style={style.containermeio}>
+        <FlatList
+          data={DATA}
+          renderItem={({ item }) => <Item ml={item.ml} hora={item.hora} nomeIcone={item.nomeIcone} nomeIcone2={item.nomeIcone2}/>}
+          keyExtractor={(item) => item.id}
+        />
+      </View>
     </View>
   );
-}
-
-const Lista = ({ ml , hora }) => {
-  return (
-      <View style={style.listahistorico}>
-          <View style={{paddingRight: 16 }}>
-          </View>
-          <View style={style.listatexto}>
-              <Text style={style.ml}>{ml}</Text>
-              <Text style={style.hora}>{hora}</Text>
-          </View>
-      </View>
-
-
-
-  );
-}
-
-
-export default Historico
-
-
+};
+export default Historico;
