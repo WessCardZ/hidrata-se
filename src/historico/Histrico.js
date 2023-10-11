@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { useFonts, Montserrat_700Bold, Montserrat_400Regular } from "@expo-google-fonts/montserrat";
-import { IconButton } from "react-native-paper";
+import { ActivityIndicator, IconButton } from "react-native-paper";
 import style from './style1'; 
-
 
 const DATA = [
   {
@@ -127,17 +126,48 @@ const Item = ({ ml, hora, nomeIcone, nomeIcone2 }) => (
 );
 
 const Historico = () => {
+  const [isLoading, setLoading] = useState(true);
+  const [cats, setCats] = useState([]);
+
+  const getCats = async () => {
+    try {
+      const response = await fetch('https://nest-web-vypb.onrender.com/cats');
+      const json = await response.json();
+      setCats(json);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getCats();
+  }, []);
+
   return (
     <View style={style.container}>
       <Text style={style.textoregistro}>Registros</Text>
       <View style={style.containermeio}>
+             {isLoading ? (
+        <ActivityIndicator />
+      ) : (
         <FlatList
-          data={DATA}
-          renderItem={({ item }) => <Item ml={item.ml} hora={item.hora} nomeIcone={item.nomeIcone} nomeIcone2={item.nomeIcone2}/>}
-          keyExtractor={(item) => item.id}
-        />
+          data={cats}
+          keyExtractor={({id}) => id}
+          renderItem={({item}) => (
+            <Text>
+              {item.nome}, {item.raca}, {item.corolhos}
+            </Text>
+          )}
+        />)}
       </View>
     </View>
   );
 };
+
+
+
+
+
 export default Historico;
