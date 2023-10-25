@@ -54,6 +54,7 @@ export default function Perfil() {
                     nomeIcone='volume-high'
                     titulo='Sons e Vibração'
                     subtitulo='Poderá modificar se deseja uma notificção com som ou com vibração'
+                    tela='sonsevibracao'
                 />
             </View>
         </View >

@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from "react-native"
 
-export default function sonsevibracao() {
+export default function Sonsevibracao() {
     return (
         <View style={styles.container}>
             <Text>Alá tua tia</Text>

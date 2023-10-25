@@ -5,7 +5,7 @@ import Historico from './src/historico/Histrico';
 import Lembretes from './src/lembretes/lembretes';
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import sonsevibracao from './src/sonsevibracao/sonsevibracao';
+import sonsevibracao from './src/Sonsevibracao/sonsevibracao';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,7 +15,7 @@ export default function App() {
       <Stack.Navigator initialRouteName='Perfil' >
         <Stack.Screen name='Perfil' component={Perfil} options={{ headerShown: false }} />
         <Stack.Screen name='Lembretes' component={Lembretes} options={{ title: 'Lembretes' }} />
-        <Stack.Screen name='sonsevibracao' component={sonsevibracao} options={{ title: 'Lembretes' }} />
+        <Stack.Screen name='sonsevibracao' component={sonsevibracao} options={{ title: 'Sons e vibração' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
