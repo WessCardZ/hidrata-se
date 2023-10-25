@@ -1,9 +1,9 @@
 import { View, Text, StyleSheet } from "react-native"
 
-export default function Lembretes() {
+export default function sonsevibracao() {
     return (
         <View style={styles.container}>
-            <Text>Alá tua mãe</Text>
+            <Text>Alá tua tia</Text>
         </View>
     )
 }
