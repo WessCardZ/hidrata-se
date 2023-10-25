@@ -1,7 +1,8 @@
-import { Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import { useFonts, Montserrat_700Bold, Montserrat_400Regular } from "@expo-google-fonts/montserrat";
 import style from './style'
 import { IconButton } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Perfil() {
 
@@ -37,6 +38,7 @@ export default function Perfil() {
                     nomeIcone='bell-outline'
                     titulo='Lembretes'
                     subtitulo='Poderá modificar o horário que será notificado para beber água'
+                    tela='Lembretes'
                 />
                 <Lista
                     nomeIcone='check'
@@ -58,16 +60,20 @@ export default function Perfil() {
     )
 }
 
-const Lista = ({ titulo, subtitulo, nomeIcone }) => {
+const Lista = ({ titulo, subtitulo, nomeIcone, tela }) => {
+    const navigation = useNavigation();
+
     return (
-        <View style={style.grupoPerfil}>
-            <View style={{ justifyContent: 'center' }}>
-                <IconButton icon={nomeIcone} size={30} iconColor="#fff" />
+        <Pressable onPress={() => navigation.navigate(tela)}>
+            <View style={style.grupoPerfil}>
+                <View style={{ justifyContent: 'center' }}>
+                    <IconButton icon={nomeIcone} size={30} iconColor="#fff" />
+                </View>
+                <View style={style.grupoTexto}>
+                    <Text style={style.titulo}>{titulo}</Text>
+                    <Text style={style.subtitulo}>{subtitulo}</Text>
+                </View>
             </View>
-            <View style={style.grupoTexto}>
-                <Text style={style.titulo}>{titulo}</Text>
-                <Text style={style.subtitulo}>{subtitulo}</Text>
-            </View>
-        </View>
+        </Pressable>
     );
 }
