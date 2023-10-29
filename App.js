@@ -2,10 +2,10 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import Perfil from './src/perfil/Pefil';
 import Historico from './src/historico/Histrico';
-import Lembretes from './src/lembretes/lembretes';
+import Lembretes from './src/perfil/lembretes/lembretes';
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import sonsevibracao from './src/Sonsevibracao/sonsevibracao';
+import sonsevibracao from './src/perfil/Sonsevibracao/sonsevibracao';
 
 const Stack = createNativeStackNavigator();
 
