@@ -5,19 +5,6 @@ import { ActivityIndicator, IconButton } from "react-native-paper";
 import style from './style1';
 
 
-const Item = ({ ml, hora, nomeIcone, nomeIcone2 }) => (
-    <View style={style.listahistorico}>
-        <View style={style.textContainer}>
-            <Text style={style.ml}>{ml}</Text>
-            <Text style={style.hora}>{hora}</Text>
-        </View>
-        <View style={style.iconContainer}>
-            <IconButton icon={nomeIcone} size={30} iconColor="#fff" />
-            <IconButton icon={nomeIcone2} size={30} iconColor="#fff" />
-        </View>
-    </View>
-);
-
 const Telahistorico = () => {
     const [isLoading, setLoading] = useState(true);
     const [historico, setHistorico] = useState([]);
@@ -36,13 +23,21 @@ const Telahistorico = () => {
 
     const Historico = ({ quantidadeML, dataHoraConsumo }) => {
         const historico = new Date(dataHoraConsumo);
-        const options = { day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' };
+        const options = { day: 'numeric', month: 'numeric', hour: '2-digit', minute: '2-digit' };
         const dataHoraConsumoFormatado = historico.toLocaleDateString('pt-BR', options);
 
         return (
-            <Text>
-                {quantidadeML}, {dataHoraConsumoFormatado}
-            </Text>
+            <View style={style.listahistorico}>
+                <View>
+                    <Text style={style.ml}>{quantidadeML}</Text>
+                    <Text style={style.hora}>{dataHoraConsumoFormatado}</Text>
+                </View>
+                <View style={style.iconContainer}>
+                    <IconButton icon={"pencil"} size={30} iconColor="#fff" />
+                    <IconButton icon={"trash-can-outline"} size={30} iconColor="#FF8080" />
+                </View>
+
+            </View>
         )
     }
 
@@ -50,18 +45,26 @@ const Telahistorico = () => {
         getHistorico();
     }, []);
 
+    let [fontsLoaded, fontError] = useFonts({
+        Montserrat_700Bold, Montserrat_400Regular
+    });
+
+    if (!fontsLoaded && !fontError) {
+        return null;
+    }
+
     return (
         <View style={style.container}>
             <Text style={style.textoregistro}>Registros</Text>
             <View style={style.containermeio}>
                 {isLoading ? (
-                    <ActivityIndicator />
+                    <ActivityIndicator size='large' />
                 ) : (
                     <FlatList
                         data={historico}
                         keyExtractor={({ id }) => id}
                         renderItem={({ item }) => (
-                            <Historico dataHoraConsumo={item.dataHoraConsumo} quantidadeML={item.quantidadeML} />
+                            <Historico quantidadeML={item.quantidadeML} dataHoraConsumo={item.dataHoraConsumo} />
                         )}
                     />)}
             </View>
