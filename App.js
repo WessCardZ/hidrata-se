@@ -11,14 +11,14 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    // <NavigationContainer>
-    //   <Stack.Navigator initialRouteName='Perfil' >
-    //     <Stack.Screen name='Perfil' component={Perfil} options={{ headerShown: false }} />
-    //     <Stack.Screen name='Lembretes' component={Lembretes} options={{ title: 'Lembretes' }} />
-    //     <Stack.Screen name='sonsevibracao' component={sonsevibracao} options={{ title: 'Sons e vibração' }} />
-    //   </Stack.Navigator>
-    // </NavigationContainer>
-    <Telahistorico />
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='Perfil' >
+        <Stack.Screen name='Perfil' component={Perfil} options={{ headerShown: false }} />
+        <Stack.Screen name='Lembretes' component={Lembretes} options={{ title: 'Lembretes' }} />
+        <Stack.Screen name='sonsevibracao' component={sonsevibracao} options={{ title: 'Sons e vibração' }} />
+      </Stack.Navigator>
+    </NavigationContainer>
+    // <Telahistorico />
   );
 }
 
