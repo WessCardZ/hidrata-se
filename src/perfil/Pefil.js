@@ -4,7 +4,7 @@ import style from './style'
 import { IconButton } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 
-export default function Perfil() {
+export default function TelaPerfil() {
 
     let [fontsLoaded, fontError] = useFonts({
         Montserrat_700Bold, Montserrat_400Regular
