@@ -4,7 +4,7 @@ import styles from "./style"
 import { useState } from "react";
 import { Switch } from "react-native-paper";
 
-export default function Sonsevibracao() {
+export default function TelaSonsevibracao() {
     let [fontsLoaded, fontError] = useFonts({
         Montserrat_700Bold, Montserrat_400Regular
     });

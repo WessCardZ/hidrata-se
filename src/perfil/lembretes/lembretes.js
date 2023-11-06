@@ -4,7 +4,7 @@ import { useFonts, Montserrat_600SemiBold } from "@expo-google-fonts/montserrat"
 import { useState } from "react"
 import { Switch } from "react-native-paper"
 
-export default function Lembretes() {
+export default function TelaLembretes() {
 
     let [fontsLoaded, fontError] = useFonts({
         Montserrat_600SemiBold
