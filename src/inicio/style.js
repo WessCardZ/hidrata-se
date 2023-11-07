@@ -36,6 +36,12 @@ const styles = StyleSheet.create({
     agua: {
         height: 39,
         backgroundColor: '#1897F2',
+    },
+    botao: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 154,
+        height: 56,
     }
 })
 
