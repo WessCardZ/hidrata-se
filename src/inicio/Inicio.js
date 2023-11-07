@@ -18,12 +18,13 @@ export default function TelaInicio() {
             <View style={styles.containerInformacao}>
                 <Text style={styles.meta}>Meta: 1882 ml</Text>
                 <View style={{ flexDirection: 'row', alignItems: 'baseline' }}>
-                    <Text style={styles.Consumido}>0</Text>
+                    <Text style={styles.consumido}>0</Text>
                     <Text style={styles.ml}> ml</Text>
                 </View>
                 <Text style={styles.porcentagem}>0%</Text>
             </View>
 
+            <View style={styles.agua} />
         </View>
     )
 }
