@@ -14,7 +14,8 @@ const Tab = createBottomTabNavigator();
 
 function MinhasTabelas() {
   return (
-    <Tab.Navigator initialRouteName='Historico' >
+    <Tab.Navigator initialRouteName='Inicio' screenOptions={{ tabBarStyle: { backgroundColor: '#49b4f2', borderTopColor: '#49b4f2' } }} >
+      <Stack.Screen name="Inicio" component={TelaInicio} options={{ headerShown: false }} />
       <Stack.Screen name="Historico" component={Telahistorico} options={{ headerShown: false }} />
       <Stack.Screen name="Perfil" component={PilhaPerfil} options={{ headerShown: false }} />
     </Tab.Navigator>
@@ -33,10 +34,9 @@ function PilhaPerfil() {
 
 export default function App() {
   return (
-    // <NavigationContainer>
-    //   <MinhasTabelas />
-    // </NavigationContainer>
-    <TelaInicio />
+    <NavigationContainer>
+      <MinhasTabelas />
+    </NavigationContainer>
   );
 }
 
