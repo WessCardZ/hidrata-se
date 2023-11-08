@@ -16,9 +16,9 @@ const Tab = createBottomTabNavigator();
 function MinhasTabelas() {
   return (
     <Tab.Navigator initialRouteName='Inicio' screenOptions={{ tabBarStyle: { backgroundColor: '#49b4f2', borderTopColor: '#49b4f2' } }} >
-      <Stack.Screen name="Inicio" component={PilhaInicio} options={{ headerShown: false }} />
-      <Stack.Screen name="Historico" component={Telahistorico} options={{ headerShown: false }} />
-      <Stack.Screen name="Perfil" component={PilhaPerfil} options={{ headerShown: false }} />
+      <Tab.Screen name="Inicio" component={PilhaInicio} options={{ headerShown: false }} />
+      <Tab.Screen name="Historico" component={Telahistorico} options={{ headerShown: false }} />
+      <Tab.Screen name="Perfil" component={PilhaPerfil} options={{ headerShown: false }} />
     </Tab.Navigator>
   );
 }
@@ -33,11 +33,11 @@ function PilhaPerfil() {
   )
 }
 
-function PilhaInicio(){
-  return(
+function PilhaInicio() {
+  return (
     <Stack.Navigator>
-      <Stack.Screen name='TelaInicio' component={TelaInicio} options={{headerShown: false}}/>
-      <Stack.Screen name='Beber' component={TelaBeber}/>
+      <Stack.Screen name='TelaInicio' component={TelaInicio} options={{ headerShown: false }} />
+      <Stack.Screen name='Beber' component={TelaBeber} />
     </Stack.Navigator>
   )
 }
