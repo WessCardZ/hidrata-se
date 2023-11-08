@@ -36,8 +36,6 @@ const styles = StyleSheet.create({
     agua: {
         height: 39,
         backgroundColor: '#1897F2',
-        position: 'relative',
-        top: 195,
     },
 })
 

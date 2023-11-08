@@ -27,16 +27,18 @@ export default function TelaInicio() {
                 <Text style={styles.porcentagem}>0%</Text>
             </View>
 
-            <View style={styles.agua} />
-            <TouchableOpacity style={{ alignItems: 'center' }}>
-                <Button style={{ justifyContent: 'center', alignItems: 'center', width: 154, height: 56, bottom: 17, position: 'absolute', }}
-                    mode="contained-total"
-                    buttonColor="#FFFFFF"
-                    textColor="#2D4F63"
-                    onPress={() => navigation.navigate('Beber')}
+            <View>
+                <View style={styles.agua} />
+                <TouchableOpacity style={{ alignItems: 'center' }}>
+                    <Button style={{ justifyContent: 'center', alignItems: 'center', width: 154, height: 56, bottom: 17, position: 'absolute', }}
+                        mode="contained-total"
+                        buttonColor="#FFFFFF"
+                        textColor="#2D4F63"
+                        onPress={() => navigation.navigate('Beber')}
                     >BEBER +
-                </Button>
-            </TouchableOpacity>
+                    </Button>
+                </TouchableOpacity>
+            </View>
         </View>
     )
 }
