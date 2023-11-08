@@ -1,4 +1,4 @@
-import { View, Text, } from "react-native";
+import { View, Text, Pressable, TouchableOpacity, } from "react-native";
 import { useFonts, Montserrat_700Bold, Montserrat_400Regular } from "@expo-google-fonts/montserrat";
 import { Roboto_400Regular } from '@expo-google-fonts/roboto';
 import { Button } from 'react-native-paper';
@@ -25,11 +25,14 @@ export default function TelaInicio() {
                 <Text style={styles.porcentagem}>0%</Text>
             </View>
 
-            <Button style={styles.botao}
-                mode="contained-tonal"
-                buttonColor="#FFFFFF"
-                textColor="#2D4F63">BEBER +</Button>
             <View style={styles.agua} />
+            <TouchableOpacity style={{ alignItems: 'center' }}>
+                <Button style={{ justifyContent: 'center', alignItems: 'center', width: 154, height: 56, bottom: 17, position: 'absolute', }}
+                    mode="contained-total"
+                    buttonColor="#FFFFFF"
+                    textColor="#2D4F63">BEBER +
+                </Button>
+            </TouchableOpacity>
         </View>
     )
 }
