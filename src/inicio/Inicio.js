@@ -3,8 +3,10 @@ import { useFonts, Montserrat_700Bold, Montserrat_400Regular } from "@expo-googl
 import { Roboto_400Regular } from '@expo-google-fonts/roboto';
 import { Button } from 'react-native-paper';
 import styles from "./style";
+import { useNavigation } from "@react-navigation/native";
 
 export default function TelaInicio() {
+    const navigation = useNavigation();
 
     let [fontsLoaded, fontError] = useFonts({
         Montserrat_700Bold, Montserrat_400Regular, Roboto_400Regular
@@ -30,7 +32,9 @@ export default function TelaInicio() {
                 <Button style={{ justifyContent: 'center', alignItems: 'center', width: 154, height: 56, bottom: 17, position: 'absolute', }}
                     mode="contained-total"
                     buttonColor="#FFFFFF"
-                    textColor="#2D4F63">BEBER +
+                    textColor="#2D4F63"
+                    onPress={() => navigation.navigate('Beber')}
+                    >BEBER +
                 </Button>
             </TouchableOpacity>
         </View>
