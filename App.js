@@ -29,7 +29,7 @@ function PilhaPerfil() {
       <Stack.Screen name='TelaPerfil' component={TelaPerfil} options={{ headerShown: false }} />
       <Stack.Screen name='Lembretes' component={TelaLembretes} options={{ title: 'Lembretes' }} />
       <Stack.Screen name='sonsevibracao' component={TelaSonsevibracao} options={{ title: 'Sons e vibração' }} />
-    </Stack.Navigator>
+    </Stack.Navigator> 
   )
 }
 

@@ -1,18 +1,22 @@
-import { Pressable, Text, View } from "react-native";
-import { useFonts, Montserrat_700Bold, Montserrat_400Regular } from "@expo-google-fonts/montserrat";
+import { Pressable, Text, View, Modal, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { useFonts, Montserrat_700Bold, Montserrat_400Regular, Montserrat_500Medium } from "@expo-google-fonts/montserrat";
 import style from './style'
 import { IconButton } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
+import { useState } from "react";
 
 export default function TelaPerfil() {
-
+    const [modalVisible, setModalVisible] = useState(false);
+    const navigation = useNavigation();
     let [fontsLoaded, fontError] = useFonts({
-        Montserrat_700Bold, Montserrat_400Regular
+        Montserrat_700Bold, Montserrat_400Regular, Montserrat_500Medium
     });
 
     if (!fontsLoaded && !fontError) {
         return null;
     }
+
+
 
     return (
         <View style={style.container} >
@@ -28,11 +32,14 @@ export default function TelaPerfil() {
                 </View>
             </View>
 
+            <Modalhorario modalVisible={modalVisible} setModalVisible={setModalVisible} />
+
             <View style={style.containerInferior}>
                 <Lista
                     nomeIcone='clock-outline'
                     titulo='Horários de dormir e acordar'
                     subtitulo='Poderá modificar o horário de acordar e dormir'
+                    onPress={() => setModalVisible(true)}
                 />
                 <Lista
                     nomeIcone='bell-outline'
@@ -55,17 +62,60 @@ export default function TelaPerfil() {
                     titulo='Sons e Vibração'
                     subtitulo='Poderá modificar se deseja uma notificção com som ou com vibração'
                     tela='sonsevibracao'
+                    onPress={() => {
+                        console.log('foi')
+                        navigation.navigate("sonsevibracao")
+                    }}
                 />
             </View>
         </View >
     )
 }
 
-const Lista = ({ titulo, subtitulo, nomeIcone, tela }) => {
-    const navigation = useNavigation();
+const Modalhorario = ({ modalVisible, setModalVisible }) => {
+    return (
+        <KeyboardAvoidingView style={{}}>
+            <Modal
+                animationType="fade"
+                transparent={true}
+                visible={modalVisible}
+            >
+
+                <View style={style.fundoModa}>
+
+                    <View style={style.modal}>
+                        <Text style={style.tituloModal}>Horários</Text>
+                        <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'space-around', marginTop: 10 }}>
+                            <Text style={{ fontFamily: 'Montserrat_500Medium', fontSize: 20, color: '#525252' }}>Acordar</Text>
+                            <Text style={{ fontFamily: 'Montserrat_500Medium', fontSize: 20, color: '#525252' }}>Dormir</Text>
+                        </View>
+
+                        <View style={style.inputs}>
+                            <TextInput keyboardType="numeric" style={style.textoInput}>06:30</TextInput>
+                            <TextInput keyboardType="numeric" style={style.textoInput}>23:30</TextInput>
+                        </View>
+                        <Pressable style={style.botaoModal}>
+                            <Pressable onPress={() => setModalVisible(false)} style={style.containerBotaoModal}>
+                                <Text style={style.textoBotaoModal}>Cancelar</Text>
+                            </Pressable>
+                            <Pressable onPress={() => alert('ala teu mae')} style={style.containerBotaoModal2} >
+                                <Text style={style.textoBotaoModal}>Salvar</Text>
+                            </Pressable>
+                        </Pressable>
+                    </View>
+
+                </View>
+            </Modal >
+        </KeyboardAvoidingView>
+    )
+}
+
+
+const Lista = ({ titulo, subtitulo, nomeIcone, tela, onPress }) => {
+
 
     return (
-        <Pressable onPress={() => navigation.navigate(tela)}>
+        <Pressable onPress={onPress}>
             <View style={style.grupoPerfil}>
                 <View style={{ justifyContent: 'center' }}>
                     <IconButton icon={nomeIcone} size={30} iconColor="#fff" />
