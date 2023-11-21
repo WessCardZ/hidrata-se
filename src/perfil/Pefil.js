@@ -46,6 +46,10 @@ export default function TelaPerfil() {
                     titulo='Lembretes'
                     subtitulo='Poderá modificar o horário que será notificado para beber água'
                     tela='Lembretes'
+                    onPress={() => {
+                        console.log('foi')
+                        navigation.navigate("Lembretes")
+                    }}
                 />
                 <Lista
                     nomeIcone='check'
@@ -91,8 +95,8 @@ const Modalhorario = ({ modalVisible, setModalVisible }) => {
                         </View>
 
                         <View style={style.inputs}>
-                            <TextInput keyboardType="numeric" style={style.textoInput}>06:30</TextInput>
-                            <TextInput keyboardType="numeric" style={style.textoInput}>23:30</TextInput>
+                            <TextInput keyboardType="numeric" style={style.textoInput}>00:00</TextInput>
+                            <TextInput keyboardType="numeric" style={style.textoInput}>00:00</TextInput>
                         </View>
                         <Pressable style={style.botaoModal}>
                             <Pressable onPress={() => setModalVisible(false)} style={style.containerBotaoModal}>

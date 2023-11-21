@@ -107,7 +107,7 @@ const style = StyleSheet.create({
         borderTopWidth: 2,
         //width: '100%',
         flex: 1,
-        marginTop: 24
+        marginTop: 32
     },
     textoBotaoModal1: {
         fontFamily: 'Montserrat_500Medium',
