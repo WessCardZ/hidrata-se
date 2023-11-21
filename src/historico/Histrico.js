@@ -43,7 +43,7 @@ const Telahistorico = () => {
 
     useEffect(() => {
         getHistorico();
-    }, []);
+    });
 
     let [fontsLoaded, fontError] = useFonts({
         Montserrat_700Bold, Montserrat_400Regular
