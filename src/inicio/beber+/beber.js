@@ -25,21 +25,23 @@ export default function TelaBeber() {
 
     return (
         <View style={styles.container}>
-            <TextInput
-                style={styles.input}
-                placeholder="Inserir ML"
-                value={ml}
-                keyboardType="numeric"
-                onChangeText={(text) => setMl(text)}
-            />
 
-            <Button style={{ justifyContent: 'center', alignItems: 'center', width: 154, height: 56, top: 511 }}
-                mode="contained-total"
-                buttonColor="#FFFFFF"
-                textColor="#2D4F63"
-                onPress={() => createPost()}
-            >BEBER +
-            </Button>
+            <View style={styles.inferior}>
+                <TextInput
+                    style={styles.input}
+                    placeholder="Inserir ML"
+                    value={ml}
+                    keyboardType="numeric"
+                    onChangeText={(text) => setMl(text)}
+                />
+                <Button style={styles.botao}
+                    mode="contained-total"
+                    buttonColor="#FFFFFF"
+                    textColor="#2D4F63"
+                    onPress={() => createPost()}
+                >BEBER +
+                </Button>
+            </View>
         </View>
     )
 }
