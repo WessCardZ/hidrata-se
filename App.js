@@ -19,10 +19,6 @@ function MinhasTabelas() { //APP
       <Stack.Navigator>
         <Stack.Screen name='TelaInicio' component={PilhaInicio} options={{ headerShown: false }} />
         <Stack.Screen name='Beber' component={TelaBeber} />
-
-
-        <Stack.Screen name='Lembretes' component={TelaLembretes} options={{ title: 'Lembretes' }} />
-        <Stack.Screen name='sonsevibracao' component={TelaSonsevibracao} options={{ title: 'Sons e vibração' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -34,7 +30,7 @@ function PilhaPerfil() {
       <Stack.Screen name='TelaPerfil' component={TelaPerfil} options={{ headerShown: false }} />
       <Stack.Screen name='Lembretes' component={TelaLembretes} options={{ title: 'Lembretes' }} />
       <Stack.Screen name='sonsevibracao' component={TelaSonsevibracao} options={{ title: 'Sons e vibração' }} />
-    </Stack.Navigator> 
+    </Stack.Navigator>
   )
 }
 
