@@ -1,4 +1,4 @@
-import { Pressable, Text, View, Modal, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { Pressable, Text, View, Modal, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, ScrollView } from "react-native";
 import { useFonts, Montserrat_700Bold, Montserrat_400Regular, Montserrat_500Medium } from "@expo-google-fonts/montserrat";
 import style from './style'
 import { IconButton, useTheme } from "react-native-paper";
@@ -39,44 +39,46 @@ export default function TelaPerfil() {
             <ModalMeta modalMetaVisible={modalMetaVisible} setModalMetaVisible={setModalMetaVisible} />
 
             <View style={style.containerInferior}>
-                <Lista
-                    nomeIcone='clock-outline'
-                    titulo='Horários de dormir e acordar'
-                    subtitulo='Poderá modificar o horário de acordar e dormir'
-                    onPress={() => setModalVisible(true)}
-                />
-                <Lista
-                    nomeIcone='bell-outline'
-                    titulo='Lembretes'
-                    subtitulo='Poderá modificar o horário que será notificado para beber água'
-                    tela='Lembretes'
-                    onPress={() => {
-                        console.log('foi')
-                        navigation.navigate("Lembretes")
-                    }}
-                />
-                <Lista
-                    nomeIcone='check'
-                    titulo='Meta'
-                    subtitulo='Poderá modificar o seu consumo ideal de acordo com sua preferência'
-                    onPress={() => setModalMetaVisible(true)}
-                />
-                <Lista
-                    nomeIcone='square-edit-outline'
-                    titulo='Peso'
-                    subtitulo='Poderá modificar o seu peso'
-                    onPress={() => setModalPesoVisible(true)}
-                />
-                <Lista
-                    nomeIcone='volume-high'
-                    titulo='Sons e Vibração'
-                    subtitulo='Poderá modificar se deseja uma notificção com som ou com vibração'
-                    tela='sonsevibracao'
-                    onPress={() => {
-                        console.log('foi')
-                        navigation.navigate("sonsevibracao")
-                    }}
-                />
+                <ScrollView>
+                    <Lista
+                        nomeIcone='clock-outline'
+                        titulo='Horários de dormir e acordar'
+                        subtitulo='Poderá modificar o horário de acordar e dormir'
+                        onPress={() => setModalVisible(true)}
+                    />
+                    <Lista
+                        nomeIcone='bell-outline'
+                        titulo='Lembretes'
+                        subtitulo='Poderá modificar o horário que será notificado para beber água'
+                        tela='Lembretes'
+                        onPress={() => {
+                            console.log('foi')
+                            navigation.navigate("Lembretes")
+                        }}
+                    />
+                    <Lista
+                        nomeIcone='check'
+                        titulo='Meta'
+                        subtitulo='Poderá modificar o seu consumo ideal de acordo com sua preferência'
+                        onPress={() => setModalMetaVisible(true)}
+                    />
+                    <Lista
+                        nomeIcone='square-edit-outline'
+                        titulo='Peso'
+                        subtitulo='Poderá modificar o seu peso'
+                        onPress={() => setModalPesoVisible(true)}
+                    />
+                    <Lista
+                        nomeIcone='volume-high'
+                        titulo='Sons e Vibração'
+                        subtitulo='Poderá modificar se deseja uma notificção com som ou com vibração'
+                        tela='sonsevibracao'
+                        onPress={() => {
+                            console.log('foi')
+                            navigation.navigate("sonsevibracao")
+                        }}
+                    />
+                </ScrollView>
             </View>
         </View >
     )
