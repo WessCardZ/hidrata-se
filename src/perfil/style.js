@@ -72,10 +72,13 @@ const style = StyleSheet.create({
         fontFamily: 'Montserrat_400Regular'
     },
     fundoModa: {
-        flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0, 0, 0, 0.4)'
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.4)'
     },
     modal: {
-        height: 220,
+        height: 230,
         width: 280,
         // flex: 0.4,
         backgroundColor: 'white',
@@ -129,6 +132,34 @@ const style = StyleSheet.create({
         borderLeftWidth: 2,
         // backgroundColor: 'yellow',
         flex: 1,
+    },
+    inputPeso: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        width: '100%',
+        paddingTop: 24,
+    },
+    textoInputPeso: {
+        fontFamily: 'Montserrat_500Medium',
+        fontSize: 50,
+    },
+    Kg: {
+        fontFamily: 'Montserrat_500Medium',
+        fontSize: 20,
+        color: '#525252',
+        marginLeft: 3,
+        paddingTop: 27,
+    },
+    textoInputMeta: {
+        fontFamily: 'Montserrat_500Medium',
+        fontSize: 50,
+    },
+    Ml: {
+        fontFamily: 'Montserrat_500Medium',
+        fontSize: 20,
+        color: '#525252',
+        marginLeft: 3,
+        paddingTop: 27,
     }
 
 })

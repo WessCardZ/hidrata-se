@@ -1,12 +1,14 @@
 import { Pressable, Text, View, Modal, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { useFonts, Montserrat_700Bold, Montserrat_400Regular, Montserrat_500Medium } from "@expo-google-fonts/montserrat";
 import style from './style'
-import { IconButton } from "react-native-paper";
+import { IconButton, useTheme } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 
 export default function TelaPerfil() {
     const [modalVisible, setModalVisible] = useState(false);
+    const [modalPesoVisible, setModalPesoVisible] = useState(false);
+    const [modalMetaVisible, setModalMetaVisible] = useState(false);
     const navigation = useNavigation();
     let [fontsLoaded, fontError] = useFonts({
         Montserrat_700Bold, Montserrat_400Regular, Montserrat_500Medium
@@ -33,6 +35,8 @@ export default function TelaPerfil() {
             </View>
 
             <Modalhorario modalVisible={modalVisible} setModalVisible={setModalVisible} />
+            <ModalPeso modalPesoVisible={modalPesoVisible} setModalPesoVisible={setModalPesoVisible} />
+            <ModalMeta modalMetaVisible={modalMetaVisible} setModalMetaVisible={setModalMetaVisible} />
 
             <View style={style.containerInferior}>
                 <Lista
@@ -55,11 +59,13 @@ export default function TelaPerfil() {
                     nomeIcone='check'
                     titulo='Meta'
                     subtitulo='Poderá modificar o seu consumo ideal de acordo com sua preferência'
+                    onPress={() => setModalMetaVisible(true)}
                 />
                 <Lista
                     nomeIcone='square-edit-outline'
                     titulo='Peso'
                     subtitulo='Poderá modificar o seu peso'
+                    onPress={() => setModalPesoVisible(true)}
                 />
                 <Lista
                     nomeIcone='volume-high'
@@ -113,6 +119,74 @@ const Modalhorario = ({ modalVisible, setModalVisible }) => {
         </KeyboardAvoidingView>
     )
 }
+
+const ModalPeso = ({ modalPesoVisible, setModalPesoVisible }) => {
+    return (
+        <KeyboardAvoidingView style={{}}>
+            <Modal
+                animationType="fade"
+                transparent={true}
+                visible={modalPesoVisible}
+            >
+                <View style={style.fundoModa}>
+
+                    <View style={style.modal}>
+                        <Text style={style.tituloModal}>Peso</Text>
+
+                        <View style={style.inputPeso}>
+                            <TextInput keyboardType="numeric" style={style.textoInputPeso}>60</TextInput>
+                            <Text style={style.Kg}>Kg</Text>
+                        </View>
+                        <Pressable style={style.botaoModal}>
+                            <Pressable onPress={() => setModalPesoVisible(false)} style={style.containerBotaoModal}>
+                                <Text style={style.textoBotaoModal}>Cancelar</Text>
+                            </Pressable>
+                            <Pressable onPress={() => alert('ala teu pai')} style={style.containerBotaoModal2} >
+                                <Text style={style.textoBotaoModal}>Salvar</Text>
+                            </Pressable>
+                        </Pressable>
+
+                    </View>
+                </View>
+            </Modal>
+        </KeyboardAvoidingView>
+    )
+}
+
+const ModalMeta = ({ modalMetaVisible, setModalMetaVisible }) => {
+    return (
+        <KeyboardAvoidingView style={{}}>
+            <Modal
+                animationType="fade"
+                transparent={true}
+                visible={modalMetaVisible}
+            >
+
+                <View style={style.fundoModa}>
+
+                    <View style={style.modal}>
+                        <Text style={style.tituloModal}>Meta diária</Text>
+
+                        <View style={style.inputPeso}>
+                            <TextInput keyboardType="numeric" style={style.textoInputMeta}>1822</TextInput>
+                            <Text style={style.Ml}>ML</Text>
+                        </View>
+                        <Pressable style={style.botaoModal}>
+                            <Pressable onPress={() => setModalMetaVisible(false)} style={style.containerBotaoModal}>
+                                <Text style={style.textoBotaoModal}>Cancelar</Text>
+                            </Pressable>
+                            <Pressable onPress={() => alert('ala teu tio')} style={style.containerBotaoModal2} >
+                                <Text style={style.textoBotaoModal}>Salvar</Text>
+                            </Pressable>
+                        </Pressable>
+                    </View>
+                </View>
+            </Modal>
+
+        </KeyboardAvoidingView>
+    )
+}
+
 
 
 const Lista = ({ titulo, subtitulo, nomeIcone, tela, onPress }) => {
