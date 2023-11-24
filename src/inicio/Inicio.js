@@ -4,8 +4,27 @@ import { Roboto_400Regular } from '@expo-google-fonts/roboto';
 import { Button } from 'react-native-paper';
 import styles from "./style";
 import { useNavigation } from "@react-navigation/native";
+import { useEffect, useState } from "react";
 
 export default function TelaInicio() {
+    const [somaMl, setSomaMl] = useState(0)
+
+    const contaMl = async () => {
+        const response = await fetch('https://aguaprojeto.onrender.com/registro-agua')
+        const json = await response.json()
+
+        var calculoMl = 0
+        for (let i = 0; i < json.length; i++) {
+            calculoMl += json[i].quantidadeML
+        }
+        setSomaMl(calculoMl);
+    };
+
+    useEffect(() => {
+        contaMl();
+    });
+
+
     const navigation = useNavigation();
 
     let [fontsLoaded, fontError] = useFonts({
@@ -21,7 +40,7 @@ export default function TelaInicio() {
             <View style={styles.containerInformacao}>
                 <Text style={styles.meta}>Meta: 1882 ml</Text>
                 <View style={{ flexDirection: 'row', alignItems: 'baseline' }}>
-                    <Text style={styles.consumido}>0</Text>
+                    <Text style={styles.consumido}>{somaMl}</Text>
                     <Text style={styles.ml}> ml</Text>
                 </View>
                 <Text style={styles.porcentagem}>0%</Text>
