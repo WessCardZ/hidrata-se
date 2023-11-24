@@ -3,12 +3,29 @@ import { useFonts, Montserrat_700Bold, Montserrat_400Regular, Montserrat_500Medi
 import style from './style'
 import { IconButton, useTheme } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function TelaPerfil() {
     const [modalVisible, setModalVisible] = useState(false);
     const [modalPesoVisible, setModalPesoVisible] = useState(false);
     const [modalMetaVisible, setModalMetaVisible] = useState(false);
+    const [somaMl, setSomaMl] = useState(0)
+
+    const contaMl = async () => {
+        const response = await fetch('https://aguaprojeto.onrender.com/registro-agua')
+        const json = await response.json()
+
+        var calculoMl = 0
+        for (let i = 0; i < json.length; i++) {
+            calculoMl += json[i].quantidadeML
+        }
+        setSomaMl(calculoMl);
+    };
+
+    useEffect(() => {
+        contaMl();
+    });
+
     const navigation = useNavigation();
     let [fontsLoaded, fontError] = useFonts({
         Montserrat_700Bold, Montserrat_400Regular, Montserrat_500Medium
@@ -27,7 +44,7 @@ export default function TelaPerfil() {
             <View style={style.containerSuperior}>
                 <View style={style.caixaML}>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <Text style={style.numeracao}>230</Text>
+                        <Text style={style.numeracao}>{somaMl}</Text>
                         <Text style={style.ml}>ml</Text>
                     </View>
                     <Text style={style.texto}>Total ingerido</Text>
