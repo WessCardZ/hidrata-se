@@ -1,23 +1,30 @@
 import { View, Text, Pressable, TouchableOpacity, } from "react-native";
 import { useFonts, Montserrat_700Bold, Montserrat_400Regular } from "@expo-google-fonts/montserrat";
 import { Roboto_400Regular } from '@expo-google-fonts/roboto';
-import { Button } from 'react-native-paper';
+import { ActivityIndicator, Button } from 'react-native-paper';
 import styles from "./style";
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 
 export default function TelaInicio() {
+    const [isLoading, setLoading] = useState(true)
     const [somaMl, setSomaMl] = useState(0)
 
     const contaMl = async () => {
-        const response = await fetch('https://aguaprojeto.onrender.com/registro-agua')
-        const json = await response.json()
+        try {
+            const response = await fetch('https://aguaprojeto.onrender.com/registro-agua')
+            const json = await response.json()
 
-        var calculoMl = 0
-        for (let i = 0; i < json.length; i++) {
-            calculoMl += json[i].quantidadeML
+            var calculoMl = 0
+            for (let i = 0; i < json.length; i++) {
+                calculoMl += json[i].quantidadeML
+            }
+            setSomaMl(calculoMl);
+        } catch (error) {
+            console.error(error)
+        } finally {
+            setLoading(false)
         }
-        setSomaMl(calculoMl);
     };
 
     useEffect(() => {
@@ -40,7 +47,11 @@ export default function TelaInicio() {
             <View style={styles.containerInformacao}>
                 <Text style={styles.meta}>Meta: 1882 ml</Text>
                 <View style={{ flexDirection: 'row', alignItems: 'baseline' }}>
-                    <Text style={styles.consumido}>{somaMl}</Text>
+                    {isLoading ? (
+                        <ActivityIndicator size='large' />
+                    ) : (
+                        <Text style={styles.consumido}>{somaMl}</Text>
+                    )}
                     <Text style={styles.ml}> ml</Text>
                 </View>
                 <Text style={styles.porcentagem}>0%</Text>
