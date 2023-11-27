@@ -55,7 +55,8 @@ const style = StyleSheet.create({
         width: 280,
         backgroundColor: 'white',
         borderRadius: 16,
-        alignItems: 'center',
+        // alignItems: 'center',
+        justifyContent: "space-evenly"
     },
     tituloModal: {
         fontFamily: 'Montserrat_700Bold',
@@ -66,6 +67,7 @@ const style = StyleSheet.create({
     caixaSubTitulo: {
         paddingTop: 17,
         maxWidth: 230,
+        alignItems: 'center',
     },
     subTituloModal: {
         fontFamily: 'Montserrat_600SemiBold',
@@ -105,6 +107,35 @@ const style = StyleSheet.create({
         borderLeftWidth: 2,
         // backgroundColor: 'yellow',
         flex: 1,
+    },
+    containerInputs: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+    },
+    ContainerinputML: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    inputML: {
+        color: '#2D4F63',
+        fontFamily: 'Montserrat_600SemiBold',
+        fontSize: 40
+    },
+    textoML: {
+        color: '#2D4F63',
+        fontFamily: 'Montserrat_600SemiBold',
+        fontSize: 20,
+    },
+    inputHorario: {
+        color: '#2D4F63',
+        fontFamily: 'Montserrat_600SemiBold',
+        fontSize: 40
+    },
+    botaoSalvarModal: {
+        width: 264,
+        height: 44,
+        backgroundColor: '#00A1FF',
+        // marginBottom: 16
     },
 });
 
