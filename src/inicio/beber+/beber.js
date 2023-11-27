@@ -2,9 +2,11 @@ import { View, Text, TextInput } from "react-native";
 import styles from "./style";
 import { Button } from "react-native-paper";
 import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
 
 export default function TelaBeber() {
+    const navigation = useNavigation()
     const [ml, setMl] = useState('')
 
     const createPost = async () => {
@@ -18,6 +20,8 @@ export default function TelaBeber() {
             })
             const json = await response.json()
             console.log(json)
+
+            navigation.navigate('TelaInicio')
         } catch (error) {
             console.log(error)
         }
