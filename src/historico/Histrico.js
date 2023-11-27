@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList } from 'react-native';
-import { useFonts, Montserrat_700Bold, Montserrat_400Regular } from "@expo-google-fonts/montserrat";
+import { View, Text, FlatList, Modal, Pressable } from 'react-native';
+import { useFonts, Montserrat_700Bold, Montserrat_400Regular, Montserrat_600SemiBold } from "@expo-google-fonts/montserrat";
 import { ActivityIndicator, IconButton } from "react-native-paper";
 import style from './style1';
 
@@ -8,6 +8,7 @@ import style from './style1';
 const Telahistorico = () => {
     const [isLoading, setLoading] = useState(true);
     const [historico, setHistorico] = useState([]);
+    const [modalVisible, setModalVisible] = useState(false)
 
     const getHistorico = async () => {
         try {
@@ -34,7 +35,7 @@ const Telahistorico = () => {
                 </View>
                 <View style={style.iconContainer}>
                     <IconButton icon={"pencil"} size={30} iconColor="#fff" />
-                    <IconButton icon={"trash-can-outline"} size={30} iconColor="#FF8080" />
+                    <IconButton icon={"trash-can-outline"} size={30} iconColor="#FF8080" onPress={() => setModalVisible(true)} />
                 </View>
 
             </View>
@@ -46,7 +47,7 @@ const Telahistorico = () => {
     }, []);
 
     let [fontsLoaded, fontError] = useFonts({
-        Montserrat_700Bold, Montserrat_400Regular
+        Montserrat_700Bold, Montserrat_400Regular, Montserrat_600SemiBold
     });
 
     if (!fontsLoaded && !fontError) {
@@ -57,6 +58,7 @@ const Telahistorico = () => {
         <View style={style.container}>
             <Text style={style.textoregistro}>Registros</Text>
             <View style={style.containermeio}>
+                <ModalDeletar modalVisible={modalVisible} setModalVisible={setModalVisible} />
                 {isLoading ? (
                     <ActivityIndicator size='large' />
                 ) : (
@@ -71,6 +73,33 @@ const Telahistorico = () => {
         </View>
     );
 };
+
+const ModalDeletar = ({ modalVisible, setModalVisible }) => {
+    return (
+        <Modal
+            animationType='fade'
+            transparent={true}
+            visible={modalVisible}
+        >
+            <View style={style.fundoModal}>
+                <View style={style.modal}>
+                    <Text style={style.tituloModal}>Você tem certeza?</Text>
+                    <View style={style.caixaSubTitulo}>
+                        <Text style={style.subTituloModal}>Assim que confirmar, o dado de registro de água selecionado irá ser apagado</Text>
+                    </View>
+                    <Pressable style={style.botaoModal}>
+                        <Pressable onPress={() => setModalVisible(false)} style={style.containerBotaoModal}>
+                            <Text style={style.textoBotaoModal}>Cancelar</Text>
+                        </Pressable>
+                        <Pressable onPress={() => alert('ala teu mae')} style={style.containerBotaoModal2} >
+                            <Text style={style.textoBotaoModalDelete}>Apagar</Text>
+                        </Pressable>
+                    </Pressable>
+                </View>
+            </View>
+        </Modal>
+    )
+}
 
 
 

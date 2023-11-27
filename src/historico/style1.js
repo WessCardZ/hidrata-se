@@ -43,6 +43,69 @@ const style = StyleSheet.create({
         flexDirection: 'row',
         right: 10,
     },
+    fundoModal: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: "center",
+        backgroundColor: 'rgba(0,0,0,0.4)'
+    },
+    modal: {
+        minHeight: 207,
+        maxHeight: 210,
+        width: 280,
+        backgroundColor: 'white',
+        borderRadius: 16,
+        alignItems: 'center',
+    },
+    tituloModal: {
+        fontFamily: 'Montserrat_700Bold',
+        fontSize: 24,
+        paddingTop: 16,
+        color: '#2D4F63',
+    },
+    caixaSubTitulo: {
+        paddingTop: 17,
+        maxWidth: 230,
+    },
+    subTituloModal: {
+        fontFamily: 'Montserrat_600SemiBold',
+        color: '#457A99',
+        fontSize: 16
+    },
+    botaoModal: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        borderTopWidth: 2,
+        //width: '100%',
+        flex: 1,
+        marginTop: 32
+    },
+    textoBotaoModal1: {
+        fontFamily: 'Montserrat_500Medium',
+        fontSize: 16,
+    },
+    textoBotaoModalDelete: {
+        fontFamily: 'Montserrat_500Medium',
+        fontSize: 16,
+        color: '#FF3434'
+    },
+    containerBotaoModal: {
+        height: 49,
+        justifyContent: 'center',
+        textAlign: 'center',
+        alignItems: 'center',
+        // backgroundColor: 'red',
+        flex: 1,
+    },
+    containerBotaoModal2: {
+        height: 49,
+        justifyContent: 'center',
+        textAlign: 'center',
+        alignItems: 'center',
+        borderLeftWidth: 2,
+        // backgroundColor: 'yellow',
+        flex: 1,
+    },
 });
 
 
