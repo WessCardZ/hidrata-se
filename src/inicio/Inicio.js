@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 export default function TelaInicio() {
     const [isLoading, setLoading] = useState(true)
     const [somaMl, setSomaMl] = useState(0)
+    const [porcentagem, setPorcentagem] = useState(0)
 
     const contaMl = async () => {
         try {
@@ -27,8 +28,16 @@ export default function TelaInicio() {
         }
     };
 
+    const contaPorcetagem = async () => {
+        const total = 1882
+
+        let calculoPorcentagem = (somaMl * 100) / total
+        setPorcentagem(calculoPorcentagem)
+    }
+
     useEffect(() => {
         contaMl();
+        contaPorcetagem()
     });
 
 
@@ -54,7 +63,7 @@ export default function TelaInicio() {
                     )}
                     <Text style={styles.ml}> ml</Text>
                 </View>
-                <Text style={styles.porcentagem}>0%</Text>
+                <Text style={styles.porcentagem}>{porcentagem.toFixed(2)}%</Text>
             </View>
 
             <View>
