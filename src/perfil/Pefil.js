@@ -124,16 +124,22 @@ const Modalhorario = ({ modalVisible, setModalVisible }) => {
                 <View style={style.fundoModa}>
 
                     <View style={style.modal}>
-                        <Text style={style.tituloModal}>Horários</Text>
-                        <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'space-around', marginTop: 10 }}>
-                            <Text style={{ fontFamily: 'Montserrat_500Medium', fontSize: 20, color: '#525252' }}>Acordar</Text>
-                            <Text style={{ fontFamily: 'Montserrat_500Medium', fontSize: 20, color: '#525252' }}>Dormir</Text>
+                        <View style={{ alignItems: 'center' }}>
+                            <Text style={style.tituloModal}>Horários</Text>
                         </View>
 
-                        <View style={style.inputs}>
-                            <TextInput keyboardType="numeric" style={style.textoInput}>00:00</TextInput>
-                            <TextInput keyboardType="numeric" style={style.textoInput}>00:00</TextInput>
+                        <View>
+                            <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+                                <Text style={{ fontFamily: 'Montserrat_500Medium', fontSize: 20, color: '#525252' }}>Acordar</Text>
+                                <Text style={{ fontFamily: 'Montserrat_500Medium', fontSize: 20, color: '#525252' }}>Dormir</Text>
+                            </View>
+
+                            <View style={style.inputs}>
+                                <TextInput keyboardType="numeric" style={style.textoInput}>00:00</TextInput>
+                                <TextInput keyboardType="numeric" style={style.textoInput}>00:00</TextInput>
+                            </View>
                         </View>
+
                         <Pressable style={style.botaoModal}>
                             <Pressable onPress={() => setModalVisible(false)} style={style.containerBotaoModal}>
                                 <Text style={style.textoBotaoModal}>Cancelar</Text>
@@ -161,10 +167,12 @@ const ModalPeso = ({ modalPesoVisible, setModalPesoVisible }) => {
                 <View style={style.fundoModa}>
 
                     <View style={style.modal}>
-                        <Text style={style.tituloModal}>Peso</Text>
+                        <View style={{ alignItems: 'center' }}>
+                            <Text style={style.tituloModal}>Peso</Text>
+                        </View>
 
-                        <View style={style.inputPeso}>
-                            <TextInput keyboardType="numeric" style={style.textoInputPeso}>60</TextInput>
+                        <View style={style.inputModal}>
+                            <TextInput keyboardType="numeric" style={style.textoInputModal}>60</TextInput>
                             <Text style={style.Kg}>Kg</Text>
                         </View>
                         <Pressable style={style.botaoModal}>
@@ -195,9 +203,11 @@ const ModalMeta = ({ modalMetaVisible, setModalMetaVisible }) => {
                 <View style={style.fundoModa}>
 
                     <View style={style.modal}>
-                        <Text style={style.tituloModal}>Meta diária</Text>
+                        <View style={{ alignItems: 'center' }}>
+                            <Text style={style.tituloModal}>Meta diária</Text>
+                        </View>
 
-                        <View style={style.inputPeso}>
+                        <View style={style.inputModal}>
                             <TextInput keyboardType="numeric" style={style.textoInputMeta}>1822</TextInput>
                             <Text style={style.Ml}>ML</Text>
                         </View>

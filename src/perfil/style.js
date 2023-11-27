@@ -78,14 +78,13 @@ const style = StyleSheet.create({
         backgroundColor: 'rgba(0, 0, 0, 0.4)'
     },
     modal: {
-        minHeight: 220,
-        maxHeight: 230,
+        minHeight: 207,
+        maxHeight: 210,
         width: 280,
-        // flex: 0.4,
         backgroundColor: 'white',
-        // padding: 20,
         borderRadius: 16,
-        alignItems: 'center',
+        // alignItems: 'center',
+        justifyContent: "space-between"
 
     },
     tituloModal: {
@@ -98,7 +97,7 @@ const style = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         // borderWidth: 2,
-        width: '100%',
+        // width: '100%',
         // marginTop: 10
     },
     textoInput: {
@@ -110,8 +109,8 @@ const style = StyleSheet.create({
         justifyContent: 'space-around',
         borderTopWidth: 2,
         //width: '100%',
-        flex: 1,
-        marginTop: 32
+        // flex: 1,
+        // marginTop: 32
     },
     textoBotaoModal1: {
         fontFamily: 'Montserrat_500Medium',
@@ -134,13 +133,13 @@ const style = StyleSheet.create({
         // backgroundColor: 'yellow',
         flex: 1,
     },
-    inputPeso: {
+    inputModal: {
         flexDirection: 'row',
         justifyContent: 'center',
-        width: '100%',
-        paddingTop: 24,
+        // width: '100%',
+        // paddingTop: 24,
     },
-    textoInputPeso: {
+    textoInputModal: {
         fontFamily: 'Montserrat_500Medium',
         fontSize: 50,
     },
@@ -161,6 +160,10 @@ const style = StyleSheet.create({
         color: '#525252',
         marginLeft: 3,
         paddingTop: 27,
+    },
+    textoBotaoModal: {
+        fontFamily: 'Montserrat_500Medium',
+        fontSize: 16
     }
 
 })
