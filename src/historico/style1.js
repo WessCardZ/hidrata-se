@@ -56,7 +56,8 @@ const style = StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: 16,
         // alignItems: 'center',
-        justifyContent: "space-evenly"
+        justifyContent: "space-between"
+
     },
     tituloModal: {
         fontFamily: 'Montserrat_700Bold',
@@ -65,7 +66,7 @@ const style = StyleSheet.create({
         color: '#2D4F63',
     },
     caixaSubTitulo: {
-        paddingTop: 17,
+        // paddingTop: 17,
         maxWidth: 230,
         alignItems: 'center',
     },
@@ -79,8 +80,8 @@ const style = StyleSheet.create({
         justifyContent: 'space-around',
         borderTopWidth: 2,
         //width: '100%',
-        flex: 1,
-        marginTop: 32
+        // flex: 1,
+        // marginTop: 32
     },
     textoBotaoModal1: {
         fontFamily: 'Montserrat_500Medium',
