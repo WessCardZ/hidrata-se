@@ -62,44 +62,11 @@ const Telahistorico = () => {
         )
     }
 
-    const ModalDeletar = () => {
-        return (
-            <Modal
-                animationType='fade'
-                transparent={true}
-                visible={modalVisible}
-            >
-                <View style={style.fundoModal}>
-                    <View style={style.modal}>
-                        <View style={{ alignItems: 'center' }}>
-                            <Text style={style.tituloModal}>Você tem certeza?</Text>
-                        </View>
-                        <View style={{ alignItems: 'center' }}>
-                            <View style={style.caixaSubTitulo}>
-                                <Text style={style.subTituloModal}>Assim que confirmar, o dado de registro de água selecionado irá ser apagado</Text>
-                            </View>
-                        </View>
-                        <Pressable style={style.botaoModal}>
-                            <Pressable onPress={() => setModalVisible(false)} style={style.containerBotaoModal}>
-                                <Text style={style.textoBotaoModal}>Cancelar</Text>
-                            </Pressable>
-                            <Pressable onPress={() => deleteHistorico(idHistorico)} style={style.containerBotaoModal2} >
-                                <Text style={style.textoBotaoModalDelete}>Apagar</Text>
-                            </Pressable>
-                        </Pressable>
-                    </View>
-                </View>
-            </Modal>
-        )
-    }
-
-
-
     return (
         <View style={style.container}>
             <Text style={style.textoregistro}>Registros</Text>
             <View style={style.containermeio}>
-                <ModalDeletar />
+                <ModalDeletar modalVisible={modalVisible} setModalVisible={setModalVisible} idHistorico={idHistorico} />
                 <ModalAtualizar modalAtualizarVisible={modalAtualizarVisible} setModalAtualizarVisible={setModalAtualizarVisible} />
                 {isLoading ? (
                     <ActivityIndicator size='large' />
@@ -123,13 +90,43 @@ const deleteHistorico = async (id) => {
             method: 'DELETE',
             headers: { 'Content-type': 'application/json' },
         });
-        console.log(id)
+        console.log('Apagado com sucesso')
 
     } catch (error) {
         console.error(error);
     }
 }
 
+const ModalDeletar = ({ modalVisible, setModalVisible, idHistorico }) => {
+    return (
+        <Modal
+            animationType='fade'
+            transparent={true}
+            visible={modalVisible}
+        >
+            <View style={style.fundoModal}>
+                <View style={style.modal}>
+                    <View style={{ alignItems: 'center' }}>
+                        <Text style={style.tituloModal}>Você tem certeza?</Text>
+                    </View>
+                    <View style={{ alignItems: 'center' }}>
+                        <View style={style.caixaSubTitulo}>
+                            <Text style={style.subTituloModal}>Assim que confirmar, o dado de registro de água selecionado irá ser apagado</Text>
+                        </View>
+                    </View>
+                    <Pressable style={style.botaoModal}>
+                        <Pressable onPress={() => setModalVisible(false)} style={style.containerBotaoModal}>
+                            <Text style={style.textoBotaoModal}>Cancelar</Text>
+                        </Pressable>
+                        <Pressable onPress={() => { deleteHistorico(idHistorico), setModalVisible(false) }} style={style.containerBotaoModal2} >
+                            <Text style={style.textoBotaoModalDelete}>Apagar</Text>
+                        </Pressable>
+                    </Pressable>
+                </View>
+            </View>
+        </Modal>
+    )
+}
 
 const ModalAtualizar = ({ modalAtualizarVisible, setModalAtualizarVisible }) => {
     return (
@@ -163,10 +160,5 @@ const ModalAtualizar = ({ modalAtualizarVisible, setModalAtualizarVisible }) => 
         </Modal>
     );
 }
-
-
-
-
-
 
 export default Telahistorico;
