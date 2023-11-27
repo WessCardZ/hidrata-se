@@ -10,12 +10,16 @@ const Telahistorico = () => {
     const [historico, setHistorico] = useState([]);
     const [modalVisible, setModalVisible] = useState(false)
     const [modalAtualizarVisible, setModalAtualizarVisible] = useState(false)
+    const [idHistorico, setIdHistorico] = useState(0)
+    const [atualizarLista, setAtualizarLista] = useState()
 
     const getHistorico = async () => {
         try {
             const response = await fetch('https://aguaprojeto.onrender.com/registro-agua');
             const json = await response.json();
             setHistorico(json);
+
+            setAtualizarLista(new Date())
         } catch (error) {
             console.error(error);
         } finally {
@@ -25,7 +29,7 @@ const Telahistorico = () => {
 
     useEffect(() => {
         getHistorico();
-    }, []);
+    }, [atualizarLista]);
 
     let [fontsLoaded, fontError] = useFonts({
         Montserrat_700Bold, Montserrat_400Regular, Montserrat_600SemiBold, Montserrat_500Medium
@@ -35,7 +39,7 @@ const Telahistorico = () => {
         return null;
     }
 
-    const Historico = ({ quantidadeML, dataHoraConsumo }) => {
+    const Historico = ({ id, quantidadeML, dataHoraConsumo }) => {
         const historico = new Date(dataHoraConsumo);
         const options = { day: 'numeric', month: 'numeric', hour: '2-digit', minute: '2-digit' };
         const dataHoraConsumoFormatado = historico.toLocaleDateString('pt-BR', options);
@@ -48,18 +52,54 @@ const Telahistorico = () => {
                 </View>
                 <View style={style.iconContainer}>
                     <IconButton icon={"pencil"} size={30} iconColor="#fff" onPress={() => setModalAtualizarVisible(true)} />
-                    <IconButton icon={"trash-can-outline"} size={30} iconColor="#FF8080" onPress={() => setModalVisible(true)} />
+                    <IconButton icon={"trash-can-outline"} size={30} iconColor="#FF8080" onPress={() => {
+                        setIdHistorico(id);
+                        setModalVisible(true);
+                    }} />
                 </View>
 
             </View>
         )
     }
 
+    const ModalDeletar = () => {
+        return (
+            <Modal
+                animationType='fade'
+                transparent={true}
+                visible={modalVisible}
+            >
+                <View style={style.fundoModal}>
+                    <View style={style.modal}>
+                        <View style={{ alignItems: 'center' }}>
+                            <Text style={style.tituloModal}>Você tem certeza?</Text>
+                        </View>
+                        <View style={{ alignItems: 'center' }}>
+                            <View style={style.caixaSubTitulo}>
+                                <Text style={style.subTituloModal}>Assim que confirmar, o dado de registro de água selecionado irá ser apagado</Text>
+                            </View>
+                        </View>
+                        <Pressable style={style.botaoModal}>
+                            <Pressable onPress={() => setModalVisible(false)} style={style.containerBotaoModal}>
+                                <Text style={style.textoBotaoModal}>Cancelar</Text>
+                            </Pressable>
+                            <Pressable onPress={() => deleteHistorico(idHistorico)} style={style.containerBotaoModal2} >
+                                <Text style={style.textoBotaoModalDelete}>Apagar</Text>
+                            </Pressable>
+                        </Pressable>
+                    </View>
+                </View>
+            </Modal>
+        )
+    }
+
+
+
     return (
         <View style={style.container}>
             <Text style={style.textoregistro}>Registros</Text>
             <View style={style.containermeio}>
-                <ModalDeletar modalVisible={modalVisible} setModalVisible={setModalVisible} />
+                <ModalDeletar />
                 <ModalAtualizar modalAtualizarVisible={modalAtualizarVisible} setModalAtualizarVisible={setModalAtualizarVisible} />
                 {isLoading ? (
                     <ActivityIndicator size='large' />
@@ -68,7 +108,7 @@ const Telahistorico = () => {
                         data={historico}
                         keyExtractor={({ id }) => id}
                         renderItem={({ item }) => (
-                            <Historico quantidadeML={item.quantidadeML} dataHoraConsumo={item.dataHoraConsumo} />
+                            <Historico id={item.id} quantidadeML={item.quantidadeML} dataHoraConsumo={item.dataHoraConsumo} />
                         )}
                     />)}
             </View>
@@ -76,36 +116,20 @@ const Telahistorico = () => {
     );
 };
 
-const ModalDeletar = ({ modalVisible, setModalVisible }) => {
-    return (
-        <Modal
-            animationType='fade'
-            transparent={true}
-            visible={modalVisible}
-        >
-            <View style={style.fundoModal}>
-                <View style={style.modal}>
-                    <View style={{ alignItems: 'center' }}>
-                        <Text style={style.tituloModal}>Você tem certeza?</Text>
-                    </View>
-                    <View style={{ alignItems: 'center' }}>
-                        <View style={style.caixaSubTitulo}>
-                            <Text style={style.subTituloModal}>Assim que confirmar, o dado de registro de água selecionado irá ser apagado</Text>
-                        </View>
-                    </View>
-                    <Pressable style={style.botaoModal}>
-                        <Pressable onPress={() => setModalVisible(false)} style={style.containerBotaoModal}>
-                            <Text style={style.textoBotaoModal}>Cancelar</Text>
-                        </Pressable>
-                        <Pressable onPress={() => alert('ala teu mae')} style={style.containerBotaoModal2} >
-                            <Text style={style.textoBotaoModalDelete}>Apagar</Text>
-                        </Pressable>
-                    </Pressable>
-                </View>
-            </View>
-        </Modal>
-    )
+
+const deleteHistorico = async (id) => {
+    try {
+        const response = await fetch(`https://aguaprojeto.onrender.com/registro-agua/${id}`, {
+            method: 'DELETE',
+            headers: { 'Content-type': 'application/json' },
+        });
+        console.log(id)
+
+    } catch (error) {
+        console.error(error);
+    }
 }
+
 
 const ModalAtualizar = ({ modalAtualizarVisible, setModalAtualizarVisible }) => {
     return (
