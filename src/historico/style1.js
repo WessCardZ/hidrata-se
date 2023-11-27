@@ -136,7 +136,7 @@ const style = StyleSheet.create({
         width: 264,
         height: 44,
         backgroundColor: '#00A1FF',
-        // marginBottom: 16
+        marginBottom: 16
     },
 });
 
