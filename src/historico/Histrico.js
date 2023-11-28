@@ -16,13 +16,11 @@ const Telahistorico = () => {
 
     useFocusEffect(
         React.useCallback(() => {
-          handleSetAtulizarLista(new Date());
-          console.log(new Date().getFullYear())
-          
+            handleSetAtulizarLista(new Date());
         }, [])
-      );
+    );
 
-    function handleSetAtulizarLista(state){
+    function handleSetAtulizarLista(state) {
         console.log('chamou')
         setAtualizarLista(state)
     }
@@ -36,7 +34,7 @@ const Telahistorico = () => {
 
         } catch (error) {
             console.error(error);
-        } 
+        }
         finally {
             setLoading(false);
         }
@@ -101,20 +99,20 @@ const Telahistorico = () => {
 
 const ModalDeletar = ({ modalVisible, setModalVisible, idHistorico, state }) => {
 
-const deleteHistorico = async (id) => {
-    try {
-        const response = await fetch(`https://aguaprojeto.onrender.com/registro-agua/${id}`, {
-            method: 'DELETE',
-            headers: { 'Content-type': 'application/json' },
-        });
-        console.log('Apagado com sucesso')
-        state(new Date());
+    const deleteHistorico = async (id) => {
+        try {
+            const response = await fetch(`https://aguaprojeto.onrender.com/registro-agua/${id}`, {
+                method: 'DELETE',
+                headers: { 'Content-type': 'application/json' },
+            });
+            console.log('Apagado com sucesso')
+            state(new Date());
 
 
-    } catch (error) {
-        console.error(error);
+        } catch (error) {
+            console.error(error);
+        }
     }
-}
 
     return (
         <Modal
