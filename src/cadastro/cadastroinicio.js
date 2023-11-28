@@ -30,3 +30,16 @@ function Cadastroinicio(){
 
 
   export default Cadastroinicio
+
+
+
+//   function app(){
+//     return(
+//       <View style={{flex: 1}}>
+//         <Cadastroinicio/>
+//       </View>
+//     )
+//   }
+  
+//   export default app
+  
