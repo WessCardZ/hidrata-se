@@ -1,4 +1,4 @@
-import { View, Text, Pressable,} from 'react-native';
+import { View, Text, Pressable, TouchableOpacity,} from 'react-native';
 import { Button } from 'react-native-paper';
 import { useFonts, Montserrat_700Bold, Montserrat_400Regular, Montserrat_600SemiBold, Montserrat_500Medium } from "@expo-google-fonts/montserrat";
 import { StyleSheet } from 'react-native';
@@ -19,9 +19,7 @@ function Cadastroinicio(){
             <Text style={style.texto}> Vamos começar </Text>
 
         <View style={style.continainer2}>
-        <Button style={style.Button} mode="contained" buttonColor='#00A1FF' onPress={() => console.log('Pressed')}>
-        Proximo
-        </Button>
+        <Button style={style.Button} mode="contained" buttonColor='#00A1FF' Montserrat_700Bold  onPress={() => console.log('Apertado')}><TouchableOpacity></TouchableOpacity></Button>
         </View>
         </View>
 
@@ -32,14 +30,3 @@ function Cadastroinicio(){
   export default Cadastroinicio
 
 
-
-//   function app(){
-//     return(
-//       <View style={{flex: 1}}>
-//         <Cadastroinicio/>
-//       </View>
-//     )
-//   }
-  
-//   export default app
-  
