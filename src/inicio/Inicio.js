@@ -10,6 +10,7 @@ export default function TelaInicio() {
     const [isLoading, setLoading] = useState(true)
     const [somaMl, setSomaMl] = useState(0)
     const [porcentagem, setPorcentagem] = useState(0)
+    const [atualizarDados, setAtualizarDados] = useState()
 
     const contaMl = async () => {
         try {
@@ -21,6 +22,8 @@ export default function TelaInicio() {
                 calculoMl += json[i].quantidadeML
             }
             setSomaMl(calculoMl);
+
+            setAtualizarDados(new Date())
         } catch (error) {
             console.error(error)
         } finally {
@@ -38,7 +41,7 @@ export default function TelaInicio() {
     useEffect(() => {
         contaMl();
         contaPorcetagem()
-    });
+    }, [atualizarDados]);
 
 
     const navigation = useNavigation();
