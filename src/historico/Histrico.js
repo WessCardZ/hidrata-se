@@ -13,6 +13,7 @@ const Telahistorico = () => {
     const [modalAtualizarVisible, setModalAtualizarVisible] = useState(false)
     const [idHistorico, setIdHistorico] = useState(0)
     const [atualizarLista, setAtualizarLista] = useState()
+    const [inputMl, setInputMl] = useState(0)
 
     useFocusEffect(
         React.useCallback(() => {
@@ -21,8 +22,8 @@ const Telahistorico = () => {
     );
 
     function handleSetAtulizarLista(state) {
-        console.log('chamou')
         setAtualizarLista(state)
+        console.log('chamou')
     }
 
     const getHistorico = async () => {
@@ -64,7 +65,11 @@ const Telahistorico = () => {
                     <Text style={style.hora}>{dataHoraConsumoFormatado}</Text>
                 </View>
                 <View style={style.iconContainer}>
-                    <IconButton icon={"pencil"} size={30} iconColor="#fff" onPress={() => setModalAtualizarVisible(true)} />
+                    <IconButton icon={"pencil"} size={30} iconColor="#fff" onPress={() => {
+                        setInputMl(quantidadeML)
+                        setIdHistorico(id);
+                        setModalAtualizarVisible(true)
+                    }} />
                     <IconButton icon={"trash-can-outline"} size={30} iconColor="#FF8080" onPress={() => {
                         setIdHistorico(id);
                         setModalVisible(true);
@@ -80,7 +85,7 @@ const Telahistorico = () => {
             <Text style={style.textoregistro}>Registros</Text>
             <View style={style.containermeio}>
                 <ModalDeletar modalVisible={modalVisible} setModalVisible={setModalVisible} idHistorico={idHistorico} state={handleSetAtulizarLista} />
-                <ModalAtualizar modalAtualizarVisible={modalAtualizarVisible} setModalAtualizarVisible={setModalAtualizarVisible} />
+                <ModalAtualizar modalAtualizarVisible={modalAtualizarVisible} idHistorico={idHistorico} setModalAtualizarVisible={setModalAtualizarVisible} inputML={inputMl} state={handleSetAtulizarLista} />
                 {isLoading ? (
                     <ActivityIndicator size='large' />
                 ) : (
@@ -144,7 +149,26 @@ const ModalDeletar = ({ modalVisible, setModalVisible, idHistorico, state }) => 
     )
 }
 
-const ModalAtualizar = ({ modalAtualizarVisible, setModalAtualizarVisible }) => {
+const ModalAtualizar = ({ modalAtualizarVisible, setModalAtualizarVisible, idHistorico, inputML, state }) => {
+
+    const [ml, setMl] = useState('')
+
+    const atualizarHistorico = async (id) => {
+        try {
+            const response = await fetch(`https://aguaprojeto.onrender.com/registro-agua/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-type': 'application/json' },
+                body: JSON.stringify({
+                    quantidadeML: ml
+                })
+            })
+            console.log('Atualizado')
+            state(new Date())
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
     return (
         <Modal
             animationType='fade'
@@ -161,14 +185,18 @@ const ModalAtualizar = ({ modalAtualizarVisible, setModalAtualizarVisible }) => 
 
                     <View style={style.containerInputs}>
                         <View style={style.ContainerinputML}>
-                            <TextInput style={style.inputML}>230</TextInput>
+                            <TextInput
+                                keyboardType='numeric'
+                                style={style.inputML}
+                                onChangeText={(text) => setMl(text)}
+                            >{inputML}</TextInput>
                             <Text style={style.textoML}>ML</Text>
                         </View>
-                        <TextInput style={style.inputHorario}>19:51</TextInput>
+                        {/* <TextInput style={style.inputHorario}>19:51</TextInput> */}
                     </View>
 
                     <View style={{ alignItems: 'center' }}>
-                        <Button style={style.botaoSalvarModal} textColor='white'>Salvar</Button>
+                        <Button style={style.botaoSalvarModal} textColor='white' onPress={() => { atualizarHistorico(idHistorico), setModalAtualizarVisible(false) }}>Salvar</Button>
                     </View>
 
                 </View>
