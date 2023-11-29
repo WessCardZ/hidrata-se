@@ -1,20 +1,18 @@
-import { View, Text, Pressable, TouchableOpacity,} from 'react-native';
+import { View, Text, TouchableOpacity} from 'react-native';
 import { Button } from 'react-native-paper';
-import { useFonts, Montserrat_700Bold, Montserrat_400Regular, Montserrat_600SemiBold, Montserrat_500Medium } from "@expo-google-fonts/montserrat";
 import { StyleSheet } from 'react-native';
 import style from './style.js'
-
+import GoogleFonts from '../components/GoogleFonts/index.js';
 
 
 function Cadastroinicio(){
-    let [fontsLoaded, fontError] = useFonts({
-        Montserrat_700Bold
-    });
+    const tst = GoogleFonts()
 
-    if (!fontsLoaded && !fontError) {
-        return null;
+    if(!tst){
+        return null
     }
     return (
+<<<<<<< HEAD
         <View style={style.container}>
             <Text style={style.texto}> Vamos começar </Text>
 
@@ -22,6 +20,17 @@ function Cadastroinicio(){
         <TouchableOpacity style={style.Button}><Text style={style.buttontexto}>Proximo</Text></TouchableOpacity>
         </View>
         </View>
+=======
+   <View style={style.container}>
+    <View style={style.containerSecundario}>
+    <Text style={style.titulo}>Vamos começar</Text>
+
+    <TouchableOpacity style={style.botao} onPress={() => console.log('Segunda tela')}>
+       <Text style={style.textoBotao}>Próximo</Text> 
+    </TouchableOpacity>
+    </View>
+   </View>
+>>>>>>> f771e9c686edcfca386900fc9b0afc5b96c9b480
 
     )
   }

@@ -4,15 +4,16 @@ const style = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#6CC2F2',
+        justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: 305,
     },
-    texto:{
-        color: '#2D4F63',
-        fontSize: 36,
-        fontFamily: 'Montserrat_700Bold',
-
+    containerSecundario:{
+        minHeight: 176, 
+        maxHeight: 176, 
+        justifyContent: 'space-between', 
+        alignItems: 'center'
     },
+<<<<<<< HEAD
     continainer2:{
         paddingTop: 67,
     },
@@ -28,6 +29,25 @@ const style = StyleSheet.create({
         fontSize: 18,
         color: '#ffffff'
     },
+=======
+    titulo:{
+        fontFamily: 'Montserrat_700Bold',
+        fontSize: 36,
+    },
+    botao:{
+        width: 296,
+        height: 47,
+        backgroundColor: '#00A1FF',
+        borderRadius: 15,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    textoBotao:{
+        fontFamily: 'Montserrat_700Bold',
+        fontSize: 18,
+        color: '#fff'
+    }
+>>>>>>> f771e9c686edcfca386900fc9b0afc5b96c9b480
 });
 
 
