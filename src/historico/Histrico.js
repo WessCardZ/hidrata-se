@@ -4,6 +4,7 @@ import { useFonts, Montserrat_700Bold, Montserrat_400Regular, Montserrat_600Semi
 import { ActivityIndicator, Button, IconButton } from "react-native-paper";
 import style from './style1';
 import { useFocusEffect } from '@react-navigation/native';
+import GoogleFonts from '../components/GoogleFonts';
 
 
 const Telahistorico = () => {
@@ -45,12 +46,10 @@ const Telahistorico = () => {
         getHistorico();
     }, [atualizarLista]);
 
-    let [fontsLoaded, fontError] = useFonts({
-        Montserrat_700Bold, Montserrat_400Regular, Montserrat_600SemiBold, Montserrat_500Medium
-    });
+    const fonts = GoogleFonts()
 
-    if (!fontsLoaded && !fontError) {
-        return null;
+    if (!fonts) {
+        return null
     }
 
     const Historico = ({ id, quantidadeML, dataHoraConsumo }) => {

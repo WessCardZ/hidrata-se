@@ -5,6 +5,7 @@ import { ActivityIndicator, Button } from 'react-native-paper';
 import styles from "./style";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
+import GoogleFonts from "../components/GoogleFonts";
 
 export default function TelaInicio() {
     const [isLoading, setLoading] = useState(true)
@@ -58,12 +59,10 @@ export default function TelaInicio() {
 
     const navigation = useNavigation();
 
-    let [fontsLoaded, fontError] = useFonts({
-        Montserrat_700Bold, Montserrat_400Regular, Roboto_400Regular
-    });
+    const fonts = GoogleFonts()
 
-    if (!fontsLoaded && !fontError) {
-        return null;
+    if (!fonts) {
+        return null
     }
 
     return (

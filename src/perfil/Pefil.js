@@ -4,6 +4,7 @@ import style from './style'
 import { ActivityIndicator, IconButton, useTheme } from "react-native-paper";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
+import GoogleFonts from "../components/GoogleFonts";
 
 export default function TelaPerfil() {
     const [isLoading, setLoading] = useState(true)
@@ -43,12 +44,10 @@ export default function TelaPerfil() {
     const navigation = useNavigation();
 
     
-    let [fontsLoaded, fontError] = useFonts({
-        Montserrat_700Bold, Montserrat_400Regular, Montserrat_500Medium
-    });
+    const fonts = GoogleFonts()
 
-    if (!fontsLoaded && !fontError) {
-        return null;
+    if (!fonts) {
+        return null
     }
 
 

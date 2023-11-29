@@ -3,14 +3,13 @@ import { useFonts, Montserrat_700Bold, Montserrat_400Regular } from "@expo-googl
 import styles from "./style"
 import { useState } from "react";
 import { Switch } from "react-native-paper";
+import GoogleFonts from "../../components/GoogleFonts";
 
 export default function TelaSonsevibracao() {
-    let [fontsLoaded, fontError] = useFonts({
-        Montserrat_700Bold, Montserrat_400Regular
-    });
+    const fonts = GoogleFonts()
 
-    if (!fontsLoaded && !fontError) {
-        return null;
+    if (!fonts) {
+        return null
     }
 
     return (

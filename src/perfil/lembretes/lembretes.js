@@ -3,15 +3,14 @@ import styles from "./style"
 import { useFonts, Montserrat_600SemiBold } from "@expo-google-fonts/montserrat";
 import { useState } from "react"
 import { Switch } from "react-native-paper"
+import GoogleFonts from "../../components/GoogleFonts";
 
 export default function TelaLembretes() {
 
-    let [fontsLoaded, fontError] = useFonts({
-        Montserrat_600SemiBold
-    });
+    const fonts = GoogleFonts()
 
-    if (!fontsLoaded && !fontError) {
-        return null;
+    if (!fonts) {
+        return null
     }
 
     return (
