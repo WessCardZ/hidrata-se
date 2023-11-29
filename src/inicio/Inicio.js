@@ -3,14 +3,21 @@ import { useFonts, Montserrat_700Bold, Montserrat_400Regular } from "@expo-googl
 import { Roboto_400Regular } from '@expo-google-fonts/roboto';
 import { ActivityIndicator, Button } from 'react-native-paper';
 import styles from "./style";
-import { useNavigation } from "@react-navigation/native";
-import { useEffect, useState } from "react";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import React, { useEffect, useState } from "react";
 
 export default function TelaInicio() {
     const [isLoading, setLoading] = useState(true)
     const [somaMl, setSomaMl] = useState(0)
     const [porcentagem, setPorcentagem] = useState(0)
     const [atualizarDados, setAtualizarDados] = useState()
+
+    useFocusEffect(
+        React.useCallback(() => {
+            setAtualizarDados(new Date());
+            console.log('tela inicial')
+        }, [])
+    )
 
     const contaMl = async () => {
         try {
@@ -22,8 +29,13 @@ export default function TelaInicio() {
                 calculoMl += json[i].quantidadeML
             }
             setSomaMl(calculoMl);
+            console.log(json)
 
-            setAtualizarDados(new Date())
+            const total = 1882
+
+            let calculoPorcentagem = (calculoMl * 100) / total
+            setPorcentagem(calculoPorcentagem)
+
         } catch (error) {
             console.error(error)
         } finally {
@@ -31,16 +43,16 @@ export default function TelaInicio() {
         }
     };
 
-    const contaPorcetagem = async () => {
-        const total = 1882
+    // const contaPorcetagem = async () => {
+    //     const total = 1882
 
-        let calculoPorcentagem = (somaMl * 100) / total
-        setPorcentagem(calculoPorcentagem)
-    }
+    //     let calculoPorcentagem = (somaMl * 100) / total
+    //     setPorcentagem(calculoPorcentagem)
+    // }
 
     useEffect(() => {
+        // contaPorcetagem()
         contaMl();
-        contaPorcetagem()
     }, [atualizarDados]);
 
 
@@ -66,7 +78,11 @@ export default function TelaInicio() {
                     )}
                     <Text style={styles.ml}> ml</Text>
                 </View>
-                <Text style={styles.porcentagem}>{porcentagem.toFixed(2)}%</Text>
+                {isLoading ? (
+                    <ActivityIndicator size='default' />
+                ) : (
+                    <Text style={styles.porcentagem}>{porcentagem.toFixed(2)}%</Text>
+                )}
             </View>
 
             <View>

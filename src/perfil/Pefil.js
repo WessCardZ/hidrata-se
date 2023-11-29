@@ -2,8 +2,8 @@ import { Pressable, Text, View, Modal, TextInput, KeyboardAvoidingView, Touchabl
 import { useFonts, Montserrat_700Bold, Montserrat_400Regular, Montserrat_500Medium } from "@expo-google-fonts/montserrat";
 import style from './style'
 import { ActivityIndicator, IconButton, useTheme } from "react-native-paper";
-import { useNavigation } from "@react-navigation/native";
-import { useEffect, useState } from "react";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import React, { useEffect, useState } from "react";
 
 export default function TelaPerfil() {
     const [isLoading, setLoading] = useState(true)
@@ -11,7 +11,14 @@ export default function TelaPerfil() {
     const [modalPesoVisible, setModalPesoVisible] = useState(false);
     const [modalMetaVisible, setModalMetaVisible] = useState(false);
     const [somaMl, setSomaMl] = useState(0)
+    const [atualizarMlIngerido, setAtualizarMlIngerido] = useState()
 
+    useFocusEffect(
+        React.useCallback(() => {
+            setAtualizarMlIngerido(new Date());
+            console.log('Tela Perfil')
+        }, [])
+    )
     const contaMl = async () => {
         try {
             const response = await fetch('https://aguaprojeto.onrender.com/registro-agua')
@@ -31,9 +38,11 @@ export default function TelaPerfil() {
 
     useEffect(() => {
         contaMl();
-    });
+    }, [atualizarMlIngerido]);
 
     const navigation = useNavigation();
+
+    
     let [fontsLoaded, fontError] = useFonts({
         Montserrat_700Bold, Montserrat_400Regular, Montserrat_500Medium
     });
