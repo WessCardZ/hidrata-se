@@ -19,7 +19,7 @@ function Cadastroinicio(){
             <Text style={style.texto}> Vamos começar </Text>
 
         <View style={style.continainer2}>
-        <Button style={style.Button} mode="contained" buttonColor='#00A1FF' Montserrat_700Bold  onPress={() => console.log('Apertado')}><TouchableOpacity></TouchableOpacity></Button>
+        <TouchableOpacity style={style.Button}><Text style={style.buttontexto}>Proximo</Text></TouchableOpacity>
         </View>
         </View>
 

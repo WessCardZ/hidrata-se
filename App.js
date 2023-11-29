@@ -58,6 +58,17 @@ import Cadastroinicio from './src/cadastro/cadastroinicio'
 // }
 
 
+  function app(){
+    return(
+      <View style={{flex: 1}}>
+        <Cadastroinicio/>
+      </View>
+    )
+  }
+  
+  export default app
+  
+
 // const styles = StyleSheet.create({
 //   container: {
 //     flex: 1

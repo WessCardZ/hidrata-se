@@ -14,15 +14,20 @@ const style = StyleSheet.create({
 
     },
     continainer2:{
-        paddingTop: 47,
+        paddingTop: 67,
     },
     Button:{
         paddingHorizontal: 125,
-        paddingTop: 10,
+        backgroundColor: '#00A1FF',
+        paddingTop: 18,
         borderRadius: 15,
-        paddingBottom: 10,
-        
-    }
+        paddingBottom: 18,
+    },
+    buttontexto:{
+        fontFamily: 'Montserrat_700Bold',
+        fontSize: 18,
+        color: '#ffffff'
+    },
 });
 
 
