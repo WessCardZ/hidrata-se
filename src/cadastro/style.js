@@ -7,34 +7,17 @@ const style = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    containerSecundario:{
-        minHeight: 176, 
-        maxHeight: 176, 
-        justifyContent: 'space-between', 
+    containerSecundario: {
+        minHeight: 176,
+        maxHeight: 176,
+        justifyContent: 'space-between',
         alignItems: 'center'
     },
-<<<<<<< HEAD
-    continainer2:{
-        paddingTop: 67,
-    },
-    Button:{
-        paddingHorizontal: 125,
-        backgroundColor: '#00A1FF',
-        paddingTop: 18,
-        borderRadius: 15,
-        paddingBottom: 18,
-    },
-    buttontexto:{
-        fontFamily: 'Montserrat_700Bold',
-        fontSize: 18,
-        color: '#ffffff'
-    },
-=======
-    titulo:{
+    titulo: {
         fontFamily: 'Montserrat_700Bold',
         fontSize: 36,
     },
-    botao:{
+    botao: {
         width: 296,
         height: 47,
         backgroundColor: '#00A1FF',
@@ -42,12 +25,11 @@ const style = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    textoBotao:{
+    textoBotao: {
         fontFamily: 'Montserrat_700Bold',
         fontSize: 18,
         color: '#fff'
     }
->>>>>>> f771e9c686edcfca386900fc9b0afc5b96c9b480
 });
 
 
