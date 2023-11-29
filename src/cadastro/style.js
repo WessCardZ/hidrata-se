@@ -7,17 +7,17 @@ const style = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    containerSecundario:{
-        minHeight: 176, 
-        maxHeight: 176, 
-        justifyContent: 'space-between', 
+    containerSecundario: {
+        minHeight: 176,
+        maxHeight: 176,
+        justifyContent: 'space-between',
         alignItems: 'center'
     },
-    titulo:{
+    titulo: {
         fontFamily: 'Montserrat_700Bold',
         fontSize: 36,
     },
-    botao:{
+    botao: {
         width: 296,
         height: 47,
         backgroundColor: '#00A1FF',
@@ -25,7 +25,7 @@ const style = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    textoBotao:{
+    textoBotao: {
         fontFamily: 'Montserrat_700Bold',
         fontSize: 18,
         color: '#fff'
