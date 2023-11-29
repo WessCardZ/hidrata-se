@@ -12,15 +12,6 @@ function Cadastroinicio(){
         return null
     }
     return (
-<<<<<<< HEAD
-        <View style={style.container}>
-            <Text style={style.texto}> Vamos começar </Text>
-
-        <View style={style.continainer2}>
-        <TouchableOpacity style={style.Button}><Text style={style.buttontexto}>Proximo</Text></TouchableOpacity>
-        </View>
-        </View>
-=======
    <View style={style.container}>
     <View style={style.containerSecundario}>
     <Text style={style.titulo}>Vamos começar</Text>
@@ -30,7 +21,7 @@ function Cadastroinicio(){
     </TouchableOpacity>
     </View>
    </View>
->>>>>>> f771e9c686edcfca386900fc9b0afc5b96c9b480
+
 
     )
   }
