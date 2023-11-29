@@ -47,19 +47,21 @@ function PilhaInicio() { //HomeStack
 
     )
 }
-export default MinhasTabelas
+// export default MinhasTabelas
 
-// export default function App() {
-//   return (
-//     <NavigationContainer>
-//       <MinhasTabelas />
-//     </NavigationContainer>
-//   );
-// }
+function App() {
+    return (
+       <View style={styles.container}>
+           <Cadastroinicio />
+       </View>
+   
+  );
+}
 
+export default App
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1
-//   },
-// });
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+});

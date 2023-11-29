@@ -41,6 +41,8 @@ export default function TelaPerfil() {
     }, [atualizarMlIngerido]);
 
     const navigation = useNavigation();
+
+    
     let [fontsLoaded, fontError] = useFonts({
         Montserrat_700Bold, Montserrat_400Regular, Montserrat_500Medium
     });

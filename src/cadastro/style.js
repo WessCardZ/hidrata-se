@@ -4,24 +4,31 @@ const style = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#6CC2F2',
+        justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: 305,
     },
-    texto:{
-        color: '#2D4F63',
-        fontSize: 36,
+    containerSecundario:{
+        minHeight: 176, 
+        maxHeight: 176, 
+        justifyContent: 'space-between', 
+        alignItems: 'center'
+    },
+    titulo:{
         fontFamily: 'Montserrat_700Bold',
-
+        fontSize: 36,
     },
-    continainer2:{
-        paddingTop: 47,
-    },
-    Button:{
-        paddingHorizontal: 125,
-        paddingTop: 10,
+    botao:{
+        width: 296,
+        height: 47,
+        backgroundColor: '#00A1FF',
         borderRadius: 15,
-        paddingBottom: 10,
-        
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    textoBotao:{
+        fontFamily: 'Montserrat_700Bold',
+        fontSize: 18,
+        color: '#fff'
     }
 });
 
