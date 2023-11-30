@@ -35,31 +35,46 @@ const style = StyleSheet.create({
         color: '#457A99',
         textAlign: 'center'
     },
-    containerInput: {
-        borderTopWidth: 1,
-        borderBottomWidth: 1,
-        borderColor: '#D9D9D9',
+    containerInformacao: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        // borderWidth: 1,
+        maxWidth: 283,
+        minWidth: 283,
+    },
+    textoInformacao: {
+        fontFamily: 'Montserrat_500Medium',
+        fontSize: 28,
+        color: '#F2F2F2'
+    },
+    containerHorarios: {
+        // borderWidth: 1,
         maxWidth: 283,
         minWidth: 283,
         minHeight: 51,
         maxHeight: 51,
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         alignItems: 'center',
         flexDirection: 'row'
     },
-    inputkg: {
+    containerInputs: {
+        borderTopWidth: 1,
+        borderBottomWidth: 1,
+        borderColor: '#D9D9D9',
+        maxWidth: 117,
+        minWidth: 117,
+        minHeight: 51,
+        maxHeight: 51,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    inputHorario: {
         // borderWidth: 1,
-        maxWidth: 70,
-        minWidth: 70,
+        // maxWidth: 70,
+        // minWidth: 70,
         fontFamily: 'Montserrat_700Bold',
         color: '#F2F2F2',
         fontSize: 28,
-    },
-    kg: {
-        fontFamily: 'Montserrat_700Bold',
-        fontSize: 14,
-        color: '#F2F2F2',
-
     },
     botao: {
         width: 296,

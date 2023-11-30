@@ -17,9 +17,19 @@ function Horarios() {
                     <Text style={style.aviso}>A pergunta visa evitar notificações durante o sono para não atrapalhar o descanso.</Text>
                 </View>
 
-                <View style={style.containerInput}>
-                    <TextInput style={style.inputkg} placeholder='60' keyboardType='numeric'>60</TextInput>
-                    <Text style={style.kg}>Kg</Text>
+                <View>
+                    <View style={style.containerInformacao}>
+                        <Text style={style.textoInformacao}>Acordar</Text>
+                        <Text style={style.textoInformacao}>Dormir</Text>
+                    </View>
+                    <View style={style.containerHorarios}>
+                        <View style={style.containerInputs}>
+                            <TextInput style={style.inputHorario} placeholder='60' keyboardType='numeric'>06:00</TextInput>
+                        </View>
+                        <View style={style.containerInputs}>
+                            <TextInput style={style.inputHorario} placeholder='60' keyboardType='numeric'>12:00</TextInput>
+                        </View>
+                    </View>
                 </View>
 
                 <TouchableOpacity style={style.botao}>
