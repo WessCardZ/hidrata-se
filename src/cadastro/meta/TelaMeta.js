@@ -13,10 +13,10 @@ function Meta() {
     return (
         <View style={style.container}>
             <View style={style.containerSecundario}>
-                <Text style={style.titulo}>Qual horário você dorme e acorda?</Text>
+                <Text style={style.titulo}>Sua meta diária é</Text>
 
                 <View style={style.containerAviso}>
-                    <Text style={style.aviso}>A pergunta visa evitar notificações durante o sono para não atrapalhar o descanso.</Text>
+                    <Text style={style.aviso}>Caso você não esteja satisfeito com sua meta, é possivel modificá-la na seção perfil.</Text>
                 </View>
 
                 <View>
