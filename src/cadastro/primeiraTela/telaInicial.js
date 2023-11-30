@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { Button } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
 import style from './style.js'
-import GoogleFonts from '../components/GoogleFonts';
+import GoogleFonts from '../../components/GoogleFonts/index.js';
 
 
 function Cadastroinicio() {

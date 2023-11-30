@@ -1,6 +1,4 @@
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
-import { Button } from 'react-native-paper';
-import { StyleSheet } from 'react-native';
 import style from './style.js'
 import GoogleFonts from '../../components/GoogleFonts/index.js';
 
@@ -15,20 +13,19 @@ function Pesoatual() {
             <View style={style.containerSecundario}>
                 <Text style={style.titulo}>Seu peso atual</Text>
 
-
                 <View style={style.containerAviso}>
-                    <Text style={style.tituloSecundario}>O consumo de água varia de acordo com o peso de cada pessoa.</Text>
-                </View>
-                
-                <View style={style.Peso}>
-                            <TextInput keyboardType="numeric" style={style.textoPeso}>60</TextInput>
-                            <Text style={style.Kg}>Kg</Text>
+                    <Text style={style.aviso}>O consumo de água varia de acordo com o peso de cada pessoa.</Text>
                 </View>
 
-                <TouchableOpacity style={style.botao} onPress={() => console.log('Terceira tela')}>
+                <View style={style.containerInput}>
+                    <TextInput style={style.inputkg} placeholder='60' keyboardType='numeric'>60</TextInput>
+                    <Text style={style.kg}>Kg</Text>
+                </View>
+
+                <TouchableOpacity style={style.botao}>
                     <Text style={style.textoBotao}>Próximo</Text>
                 </TouchableOpacity>
-                </View>
+            </View>
         </View>
     )
 }

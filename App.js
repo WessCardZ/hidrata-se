@@ -9,7 +9,7 @@ import TelaSonsevibracao from './src/perfil/Sonsevibracao/sonsevibracao';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import TelaInicio from './src/inicio/Inicio';
 import TelaBeber from './src/inicio/beber+/beber';
-import Cadastroinicio from './src/cadastro/cadastroinicio'
+import Cadastroinicio from './src/cadastro/primeiraTela/telaInicial'
 import Pesoatual from './src/cadastro/pesoatualcadastro/pesoatual';
 
 // const Stack = createNativeStackNavigator();
@@ -50,11 +50,11 @@ import Pesoatual from './src/cadastro/pesoatualcadastro/pesoatual';
 // export default MinhasTabelas
 
 function App() {
-    return (
-       <View style={styles.container}>
-           <Pesoatual/>
-       </View>
-   
+  return (
+    <View style={styles.container}>
+      <Pesoatual />
+    </View>
+
   );
 }
 

@@ -5,18 +5,61 @@ const style = StyleSheet.create({
         flex: 1,
         backgroundColor: '#6CC2F2',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     containerSecundario: {
-        minHeight: 221,
-        maxHeight: 221,
+        minHeight: 381,
+        maxHeight: 381,
         justifyContent: 'space-between',
         alignItems: 'center'
     },
     titulo: {
         fontFamily: 'Montserrat_700Bold',
-        fontSize: 36,
-        color: '#2D4F63',
+        fontSize: 32,
+        color: '#2D4F63'
+    },
+    containerAviso: {
+        // borderWidth: 1,
+        maxWidth: 283,
+        minWidth: 283,
+        minHeight: 66,
+        maxHeight: 66,
+        justifyContent: 'center',
+        // alignItems: 'center',
+        backgroundColor: '#AAD8F2',
+        borderRadius: 8
+    },
+    aviso: {
+        fontFamily: 'Montserrat_500Medium',
+        fontSize: 14,
+        color: '#457A99',
+        textAlign: 'center'
+    },
+    containerInput: {
+        borderTopWidth: 1,
+        borderBottomWidth: 1,
+        borderColor: '#D9D9D9',
+        maxWidth: 283,
+        minWidth: 283,
+        minHeight: 51,
+        maxHeight: 51,
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row'
+    },
+    inputkg: {
+        // borderWidth: 1,
+        maxWidth: 70,
+        minWidth: 70,
+        fontFamily: 'Montserrat_700Bold',
+        color: '#F2F2F2',
+        fontSize: 28,
+    },
+    kg: {
+        fontFamily: 'Montserrat_700Bold',
+        fontSize: 14,
+        color: '#F2F2F2',
+
     },
     botao: {
         width: 296,
@@ -31,22 +74,6 @@ const style = StyleSheet.create({
         fontSize: 18,
         color: '#fff'
     },
-    tituloSecundario: {
-        fontFamily: 'Montserrat_500Medium',
-        fontSize: 14,
-        color: '#457A99'
-
-    },
-    containerAviso: {
-        borderRadius: 8,
-        borderColor: '#AAD8F2',
-        width: 283,
-        height: 66,
-        borderWidth: 1,
-        justifyContent:'center',
-        backgroundColor: '#AAD8F2',
-        alignItems: 'center'
-    }
 });
 
 // AAD8F2
