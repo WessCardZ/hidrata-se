@@ -11,6 +11,7 @@ import TelaInicio from './src/inicio/Inicio';
 import TelaBeber from './src/inicio/beber+/beber';
 import Cadastroinicio from './src/cadastro/primeiraTela/telaInicial'
 import Pesoatual from './src/cadastro/pesoatualcadastro/pesoatual';
+import Horarios from './src/cadastro/horarios/telaHorarios';
 
 // const Stack = createNativeStackNavigator();
 // const Tab = createBottomTabNavigator();
@@ -52,7 +53,7 @@ import Pesoatual from './src/cadastro/pesoatualcadastro/pesoatual';
 function App() {
   return (
     <View style={styles.container}>
-      <Pesoatual />
+      <Horarios />
     </View>
 
   );
