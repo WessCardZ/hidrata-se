@@ -1,8 +1,10 @@
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import style from './style.js';
 import GoogleFonts from '../../components/GoogleFonts/index.js';
+import { useNavigation } from '@react-navigation/native';
 
 function Horarios() {
+    const navigation = useNavigation()
     const tst = GoogleFonts()
 
     if (!tst) {
@@ -32,7 +34,7 @@ function Horarios() {
                     </View>
                 </View>
 
-                <TouchableOpacity style={style.botao}>
+                <TouchableOpacity style={style.botao} onPress={() => navigation.navigate('TelaMeta')}>
                     <Text style={style.textoBotao}>Próximo</Text>
                 </TouchableOpacity>
             </View>

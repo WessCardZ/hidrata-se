@@ -3,10 +3,12 @@ import { Button } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
 import style from './style.js'
 import GoogleFonts from '../../components/GoogleFonts/index.js';
+import { useNavigation } from '@react-navigation/native';
 
 
 function Cadastroinicio() {
     const tst = GoogleFonts()
+    const navigation = useNavigation()
 
     if (!tst) {
         return null
@@ -16,7 +18,7 @@ function Cadastroinicio() {
             <View style={style.containerSecundario}>
                 <Text style={style.titulo}>Vamos começar</Text>
 
-                <TouchableOpacity style={style.botao} onPress={() => console.log('Segunda tela')}>
+                <TouchableOpacity style={style.botao} onPress={() => navigation.navigate('TelaPeso')}>
                     <Text style={style.textoBotao}>Próximo</Text>
                 </TouchableOpacity>
             </View>

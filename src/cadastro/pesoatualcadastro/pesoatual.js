@@ -1,8 +1,10 @@
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import style from './style.js'
 import GoogleFonts from '../../components/GoogleFonts/index.js';
+import { useNavigation } from '@react-navigation/native';
 
 function Pesoatual() {
+    const navigation = useNavigation()
     const tst = GoogleFonts()
 
     if (!tst) {
@@ -22,7 +24,7 @@ function Pesoatual() {
                     <Text style={style.kg}>Kg</Text>
                 </View>
 
-                <TouchableOpacity style={style.botao}>
+                <TouchableOpacity style={style.botao} onPress={() => navigation.navigate('TelaHorarios')}>
                     <Text style={style.textoBotao}>Próximo</Text>
                 </TouchableOpacity>
             </View>

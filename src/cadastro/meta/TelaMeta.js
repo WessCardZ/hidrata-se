@@ -1,8 +1,10 @@
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import GoogleFonts from "../../components/GoogleFonts";
 import style from "./style";
+import { useNavigation } from "@react-navigation/native";
 
 function Meta() {
+    const navigation = useNavigation()
     const tst = GoogleFonts()
 
     if (!tst) {
@@ -24,7 +26,7 @@ function Meta() {
                     </View>
                 </View>
 
-                <TouchableOpacity style={style.botao}>
+                <TouchableOpacity style={style.botao} onPress={() => navigation.navigate('MinhasTabelas')}>
                     <Text style={style.textoBotao}>Finalizar</Text>
                 </TouchableOpacity>
             </View>
