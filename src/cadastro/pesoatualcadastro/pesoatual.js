@@ -2,9 +2,29 @@ import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import style from './style.js'
 import GoogleFonts from '../../components/GoogleFonts/index.js';
 import { useNavigation } from '@react-navigation/native';
+import { useState } from 'react';
 
 function Pesoatual() {
     const navigation = useNavigation()
+    const [peso, setPeso] = useState('')
+
+
+    const handleTrocaInput = (text) => {
+        //Remove qualquer caractere não numerico
+        const numericValue = text.replace(/[^0-9]/g, '');
+
+        //Formata o valor para exibir os dois últimos dígitos
+        const formattedValue = formantandoKg(numericValue, 2)
+
+        setPeso(formattedValue);
+    }
+
+    const formantandoKg = (value, decimalPlaces) => {
+        // Calcula 10 elevado à potência de decimalPlaces e converte o valor dividindo pelo resultado de Math.pow
+        const floatValue = parseFloat(value) / Math.pow(10, decimalPlaces)
+        return floatValue.toFixed(decimalPlaces)
+    }
+
     const tst = GoogleFonts()
 
     if (!tst) {
@@ -20,7 +40,7 @@ function Pesoatual() {
                 </View>
 
                 <View style={style.containerInput}>
-                    <TextInput style={style.inputkg} placeholder='60' keyboardType='numeric'>60</TextInput>
+                    <TextInput style={style.inputkg} placeholder='60.00' keyboardType='decimal-pad' maxLength={6} textAlign='left' value={peso} onChangeText={handleTrocaInput}></TextInput>
                     <Text style={style.kg}>Kg</Text>
                 </View>
 

@@ -49,8 +49,8 @@ const style = StyleSheet.create({
     },
     inputkg: {
         // borderWidth: 1,
-        maxWidth: 70,
-        minWidth: 70,
+        maxWidth: 100,
+        minWidth: 100,
         fontFamily: 'Montserrat_700Bold',
         color: '#F2F2F2',
         fontSize: 28,
