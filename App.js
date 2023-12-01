@@ -56,9 +56,9 @@ function PilhaCadastro() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName='primeiraTela'>
         <Stack.Screen name='primeiraTela' component={Cadastroinicio} options={{ headerShown: false }} />
-        <Stack.Screen name='TelaPeso' component={Pesoatual} options={{ headerTitle: "", headerTransparent: true }} />
-        <Stack.Screen name='TelaHorarios' component={Horarios} options={{ headerTitle: "", headerTransparent: true }} />
-        <Stack.Screen name='TelaMeta' component={Meta} options={{ headerTitle: "", headerTransparent: true }} />
+        <Stack.Screen name='TelaPeso' component={Pesoatual} options={{ headerTitle: "", headerTransparent: true, animation: 'slide_from_right' }} />
+        <Stack.Screen name='TelaHorarios' component={Horarios} options={{ headerTitle: "", headerTransparent: true, animation: 'slide_from_right' }} />
+        <Stack.Screen name='TelaMeta' component={Meta} options={{ headerTitle: "", headerTransparent: true, animation: 'slide_from_right' }} />
         <Stack.Screen name='MinhasTabelas' component={MinhasTabelas} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
