@@ -2,9 +2,48 @@ import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import style from './style.js';
 import GoogleFonts from '../../components/GoogleFonts/index.js';
 import { useNavigation } from '@react-navigation/native';
+import { useState } from 'react';
 
 function Horarios() {
     const navigation = useNavigation()
+    const [horarioAcordar, setHorarioAcordar] = useState('')
+    const [horarioDormir, setHorarioDormir] = useState('')
+
+    const handleTrocaInputAcordar = (text) => {
+        //Remove qualquer caractere não numerico
+        const numericValue = text.replace(/[^0-9]/g, '')
+
+        // Garante que vai ta limitado a 4 dígitos
+        const limiteNumerico = numericValue.slice(0, 4)
+
+        const valorFormatado = formatarHora(limiteNumerico)
+
+        setHorarioAcordar(valorFormatado)
+    }
+
+    const handleTrocaInputDormir = (text) => {
+        //Remove qualquer caractere não numerico
+        const numericValue = text.replace(/[^0-9]/g, '')
+
+        // Garante que vai ta limitado a 4 dígitos
+        const limiteNumerico = numericValue.slice(0, 4)
+
+        const valorFormatado = formatarHora(limiteNumerico)
+
+        setHorarioDormir(valorFormatado)
+    }
+
+    const formatarHora = (value) => {
+        if (value.length <= 2) {
+            return value
+        } else {
+            const hora = value.slice(0, 2)
+            const minutos = value.slice(2)
+            return `${hora}:${minutos}`
+        }
+    }
+
+
     const tst = GoogleFonts()
 
     if (!tst) {
@@ -26,10 +65,22 @@ function Horarios() {
                     </View>
                     <View style={style.containerHorarios}>
                         <View style={style.containerInputs}>
-                            <TextInput style={style.inputHorario} placeholder='60' keyboardType='numeric'>06:00</TextInput>
+                            <TextInput
+                                style={style.inputHorario}
+                                placeholder='06:00'
+                                keyboardType='numeric'
+                                maxLength={5}
+                                value={horarioAcordar}
+                                onChangeText={handleTrocaInputAcordar}></TextInput>
                         </View>
                         <View style={style.containerInputs}>
-                            <TextInput style={style.inputHorario} placeholder='60' keyboardType='numeric'>12:00</TextInput>
+                            <TextInput
+                                style={style.inputHorario}
+                                placeholder='24:00'
+                                keyboardType='numeric'
+                                maxLength={5}
+                                value={horarioDormir}
+                                onChangeText={handleTrocaInputDormir}></TextInput>
                         </View>
                     </View>
                 </View>

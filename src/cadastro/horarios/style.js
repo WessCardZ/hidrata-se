@@ -70,8 +70,8 @@ const style = StyleSheet.create({
     },
     inputHorario: {
         // borderWidth: 1,
-        // maxWidth: 70,
-        // minWidth: 70,
+        maxWidth: 85,
+        minWidth: 85,
         fontFamily: 'Montserrat_700Bold',
         color: '#F2F2F2',
         fontSize: 28,
