@@ -25,6 +25,16 @@ function Pesoatual() {
         return floatValue.toFixed(decimalPlaces)
     }
 
+    const handleNavigation = () => {
+        const pesoNumero = parseFloat(peso);
+
+        if (!isNaN(pesoNumero)) {
+            navigation.navigate('TelaHorarios', { peso: pesoNumero });
+        } else {
+            console.error('Peso inválido')
+        }
+    }
+
     const tst = GoogleFonts()
 
     if (!tst) {
@@ -44,7 +54,7 @@ function Pesoatual() {
                     <Text style={style.kg}>Kg</Text>
                 </View>
 
-                <TouchableOpacity style={style.botao} onPress={() => navigation.navigate('TelaHorarios')}>
+                <TouchableOpacity style={style.botao} onPress={handleNavigation}>
                     <Text style={style.textoBotao}>Próximo</Text>
                 </TouchableOpacity>
             </View>

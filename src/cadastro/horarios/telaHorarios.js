@@ -1,13 +1,16 @@
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import style from './style.js';
 import GoogleFonts from '../../components/GoogleFonts/index.js';
-import { useNavigation } from '@react-navigation/native';
-import { useState } from 'react';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { useEffect, useState } from 'react';
 
 function Horarios() {
     const navigation = useNavigation()
     const [horarioAcordar, setHorarioAcordar] = useState('')
     const [horarioDormir, setHorarioDormir] = useState('')
+    const [meta, setMeta] = useState(0)
+    const route = useRoute();
+    const { peso } = route.params;
 
     const handleTrocaInputAcordar = (text) => {
         //Remove qualquer caractere não numerico
@@ -43,6 +46,41 @@ function Horarios() {
         }
     }
 
+    const calcularMeta = () => {
+        const calculo = peso * 35
+        setMeta(calculo)
+    }
+
+    useEffect(() => {
+        calcularMeta()
+    }, [])
+
+
+    const criarConta = async () => {
+        try {
+            const response = await fetch('http://aguaprojeto.onrender.com/usuario', {
+                method: 'POST',
+                headers: { 'Content-type': 'application/json' },
+                body: JSON.stringify({
+                    pesoAtual: peso,
+                    horarioAcordar: horarioAcordar,
+                    horarioDormir: horarioDormir,
+                    metaDiaria: meta
+                }),
+            })
+            if (!response.ok) {
+                console.error(`Erro do servidor: ${response.status}`)
+            } else {
+                const json = await response.json();
+                console.log(json)
+
+                navigation.navigate('TelaMeta')
+            }
+        } catch (error) {
+            console.error('erro ao criar conta:', error)
+        }
+    }
+
 
     const tst = GoogleFonts()
 
@@ -53,6 +91,8 @@ function Horarios() {
         <View style={style.container}>
             <View style={style.containerSecundario}>
                 <Text style={style.titulo}>Qual horário você dorme e acorda?</Text>
+                <Text>{`Peso recebido: ${peso} Kg`}</Text>
+                <Text>{`Meta de água: ${meta}`}</Text>
 
                 <View style={style.containerAviso}>
                     <Text style={style.aviso}>A pergunta visa evitar notificações durante o sono para não atrapalhar o descanso.</Text>
@@ -85,7 +125,7 @@ function Horarios() {
                     </View>
                 </View>
 
-                <TouchableOpacity style={style.botao} onPress={() => navigation.navigate('TelaMeta')}>
+                <TouchableOpacity style={style.botao} onPress={() => criarConta()}>
                     <Text style={style.textoBotao}>Próximo</Text>
                 </TouchableOpacity>
             </View>
