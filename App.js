@@ -13,10 +13,11 @@ import Cadastroinicio from './src/cadastroConfig/primeiraTela/telaInicial'
 import Pesoatual from './src/cadastroConfig/pesoatualcadastro/pesoatual';
 import Horarios from './src/cadastroConfig/horarios/telaHorarios';
 import Meta from './src/cadastroConfig/meta/TelaMeta';
-import TelaLogin from './src/cadastroUsuario/Login/telaLogin';
+import TelaRegistro from './src/cadastroUsuario/Login/telaLogin';
+import TelaLogin from './src/cadastroUsuario/Registrar/telaRegistro';
 
-// const Stack = createNativeStackNavigator();
-// const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 // function MinhasTabelas() { //APP
 //   return (
@@ -65,16 +66,27 @@ import TelaLogin from './src/cadastroUsuario/Login/telaLogin';
 //   )
 // }
 
-function App() {
+function PilhaConta() {
   return (
-    <View style={styles.container}>
-      <TelaLogin />
-    </View>
-
-  );
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='TelaLogin'>
+        <Stack.Screen name='TelaLogin' component={TelaLogin} options={{ headerShown: false }} />
+        <Stack.Screen name='TelaCadastro' component={TelaRegistro} options={{ headerShown: false }} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
 }
 
-export default App
+// function App() {
+//   return (
+//     <View style={styles.container}>
+//       <TelaRegistro />
+//     </View>
+
+//   );
+// }
+
+export default PilhaConta
 
 const styles = StyleSheet.create({
   container: {
