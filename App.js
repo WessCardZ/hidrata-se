@@ -13,8 +13,8 @@ import Cadastroinicio from './src/cadastroConfig/primeiraTela/telaInicial'
 import Pesoatual from './src/cadastroConfig/pesoatualcadastro/pesoatual';
 import Horarios from './src/cadastroConfig/horarios/telaHorarios';
 import Meta from './src/cadastroConfig/meta/TelaMeta';
-import TelaRegistro from './src/cadastroUsuario/Login/telaLogin';
-import TelaLogin from './src/cadastroUsuario/Registrar/telaRegistro';
+import TelaRegistro from './src/cadastroUsuario/Login/telaRegistrar';
+import TelaLogin from './src/cadastroUsuario/Registrar/telaLogin';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
