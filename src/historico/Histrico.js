@@ -5,6 +5,7 @@ import { ActivityIndicator, Button, IconButton } from "react-native-paper";
 import style from './style1';
 import { useFocusEffect } from '@react-navigation/native';
 import GoogleFonts from '../components/GoogleFonts';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const Telahistorico = () => {
@@ -28,11 +29,12 @@ const Telahistorico = () => {
     }
 
     const getHistorico = async () => {
+        const userId = await AsyncStorage.getItem('userId')
         try {
-            const response = await fetch('https://aguaprojeto.onrender.com/registro-agua');
+            const response = await fetch(`https://aguaprojeto.onrender.com/usuario/${userId}`);
             const json = await response.json();
-            setHistorico(json);
-            console.log(json)
+            const registroAgua = json.registroAgua
+            setHistorico(registroAgua);
 
         } catch (error) {
             console.error(error);
