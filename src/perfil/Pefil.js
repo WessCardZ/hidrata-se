@@ -5,6 +5,7 @@ import { ActivityIndicator, IconButton, useTheme } from "react-native-paper";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import GoogleFonts from "../components/GoogleFonts";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function TelaPerfil() {
     const [isLoading, setLoading] = useState(true)
@@ -21,15 +22,19 @@ export default function TelaPerfil() {
         }, [])
     )
     const contaMl = async () => {
+        const userId = await AsyncStorage.getItem('userId')
         try {
-            const response = await fetch('https://aguaprojeto.onrender.com/registro-agua')
+            const response = await fetch(`https://aguaprojeto.onrender.com/usuario/${userId}`)
             const json = await response.json()
 
-            var calculoMl = 0
-            for (let i = 0; i < json.length; i++) {
-                calculoMl += json[i].quantidadeML
+            let calculoMl = 0
+            if (json.registroAgua && json.registroAgua.length > 0) {
+
+                for (let i = 0; i < json.registroAgua.length; i++) {
+                    calculoMl += json.registroAgua[i].quantidadeML
+                }
+                setSomaMl(calculoMl)
             }
-            setSomaMl(calculoMl);
         } catch (error) {
             console.error(error)
         } finally {
@@ -43,7 +48,7 @@ export default function TelaPerfil() {
 
     const navigation = useNavigation();
 
-    
+
     const fonts = GoogleFonts()
 
     if (!fonts) {
