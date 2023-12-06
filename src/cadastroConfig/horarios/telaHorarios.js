@@ -3,6 +3,7 @@ import style from './style.js';
 import GoogleFonts from '../../components/GoogleFonts/index.js';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function Horarios() {
     const navigation = useNavigation()
@@ -11,6 +12,7 @@ function Horarios() {
     const [meta, setMeta] = useState(0)
     const route = useRoute();
     const { peso } = route.params;
+
 
     const handleTrocaInputAcordar = (text) => {
         //Remove qualquer caractere não numerico
@@ -57,8 +59,10 @@ function Horarios() {
 
 
     const criarConta = async () => {
+        const userId = await AsyncStorage.getItem('userId')
+        console.log(userId)
         try {
-            const response = await fetch('http://aguaprojeto.onrender.com/usuario', {
+            const response = await fetch(`http://aguaprojeto.onrender.com/usuarioconfig/${userId}`, {
                 method: 'POST',
                 headers: { 'Content-type': 'application/json' },
                 body: JSON.stringify({
@@ -91,8 +95,7 @@ function Horarios() {
         <View style={style.container}>
             <View style={style.containerSecundario}>
                 <Text style={style.titulo}>Qual horário você dorme e acorda?</Text>
-                <Text>{`Peso recebido: ${peso} Kg`}</Text>
-                <Text>{`Meta de água: ${meta}`}</Text>
+                <Text>{peso}</Text>
 
                 <View style={style.containerAviso}>
                     <Text style={style.aviso}>A pergunta visa evitar notificações durante o sono para não atrapalhar o descanso.</Text>
@@ -116,7 +119,7 @@ function Horarios() {
                         <View style={style.containerInputs}>
                             <TextInput
                                 style={style.inputHorario}
-                                placeholder='24:00'
+                                placeholder='00:00'
                                 keyboardType='numeric'
                                 maxLength={5}
                                 value={horarioDormir}

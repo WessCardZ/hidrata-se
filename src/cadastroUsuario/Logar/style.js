@@ -17,8 +17,8 @@ const style = StyleSheet.create({
     },
     containerInput: {
         alignItems: 'center',
-        minHeight: 344,
-        maxHeight: 344,
+        maxHeight: 164,
+        minHeight: 164,
         justifyContent: 'space-between'
     },
     input: {
@@ -40,8 +40,8 @@ const style = StyleSheet.create({
     containerBotao: {
         alignItems: 'center',
         marginTop: 20,
-        maxHeight: 87,
-        minHeight: 87,
+        maxHeight: 127,
+        minHeight: 127,
         justifyContent: 'space-between'
     },
     botao: {

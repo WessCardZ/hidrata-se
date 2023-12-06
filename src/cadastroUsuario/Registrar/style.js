@@ -17,8 +17,8 @@ const style = StyleSheet.create({
     },
     containerInput: {
         alignItems: 'center',
-        maxHeight: 164,
-        minHeight: 164,
+        minHeight: 344,
+        maxHeight: 344,
         justifyContent: 'space-between'
     },
     input: {
@@ -30,6 +30,17 @@ const style = StyleSheet.create({
         fontFamily: 'Montserrat_500Medium',
         fontSize: 16
     },
+    inputError: {
+        width: 310,
+        height: 50,
+        backgroundColor: '#E6E6E6',
+        borderRadius: 8,
+        paddingLeft: 12,
+        fontFamily: 'Montserrat_500Medium',
+        fontSize: 16,
+        borderColor: 'red',
+        borderWidth: 2
+    },
     label: {
         fontFamily: 'Montserrat_500Medium',
         fontSize: 16,
@@ -40,8 +51,8 @@ const style = StyleSheet.create({
     containerBotao: {
         alignItems: 'center',
         marginTop: 20,
-        maxHeight: 127,
-        minHeight: 127,
+        maxHeight: 87,
+        minHeight: 87,
         justifyContent: 'space-between'
     },
     botao: {
