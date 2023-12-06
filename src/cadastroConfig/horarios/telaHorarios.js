@@ -60,7 +60,7 @@ function Horarios() {
 
     const criarConta = async () => {
         const userId = await AsyncStorage.getItem('userId')
-        console.log(userId)
+        // console.log(userId)
         try {
             const response = await fetch(`http://aguaprojeto.onrender.com/usuarioconfig/${userId}`, {
                 method: 'POST',

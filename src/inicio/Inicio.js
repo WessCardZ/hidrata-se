@@ -6,12 +6,14 @@ import styles from "./style";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import GoogleFonts from "../components/GoogleFonts";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function TelaInicio() {
     const [isLoading, setLoading] = useState(true)
     const [somaMl, setSomaMl] = useState(0)
     const [porcentagem, setPorcentagem] = useState(0)
     const [atualizarDados, setAtualizarDados] = useState()
+    const [metaDiaria, setMetaDiaria] = useState()
 
     useFocusEffect(
         React.useCallback(() => {
@@ -21,22 +23,32 @@ export default function TelaInicio() {
     )
 
     const contaMl = async () => {
+        const userId = await AsyncStorage.getItem('userId')
         try {
-            const response = await fetch('https://aguaprojeto.onrender.com/registro-agua')
-            const json = await response.json()
+            const responseRegistroAgua = await fetch(`https://aguaprojeto.onrender.com/usuario/${userId}`)
+            const jsonRegistroAgua = await responseRegistroAgua.json()
 
-            var calculoMl = 0
-            for (let i = 0; i < json.length; i++) {
-                calculoMl += json[i].quantidadeML
+            let calculoMl = 0
+            if (jsonRegistroAgua.registroAgua && jsonRegistroAgua.registroAgua.length > 0) {
+
+                for (let i = 0; i < jsonRegistroAgua.registroAgua.length; i++) {
+                    calculoMl += jsonRegistroAgua.registroAgua[i].quantidadeML
+                }
+                setSomaMl(calculoMl)
             }
-            setSomaMl(calculoMl);
-            console.log(json)
 
-            const total = 1882
+            const responseMeta = await fetch(`https://aguaprojeto.onrender.com/usuario/${userId}`)
+            const jsonMeta = await responseMeta.json()
 
-            let calculoPorcentagem = (calculoMl * 100) / total
-            setPorcentagem(calculoPorcentagem)
+            if (jsonMeta.usuarioConfig && jsonMeta.usuarioConfig.length > 0) {
+                const usuarioConfigApi = jsonMeta.usuarioConfig[0]
 
+                const meta = usuarioConfigApi.metaDiaria;
+                setMetaDiaria(meta)
+
+                let calculoPorcentagem = (calculoMl * 100) / meta
+                setPorcentagem(calculoPorcentagem)
+            }
         } catch (error) {
             console.error(error)
         } finally {
@@ -44,15 +56,7 @@ export default function TelaInicio() {
         }
     };
 
-    // const contaPorcetagem = async () => {
-    //     const total = 1882
-
-    //     let calculoPorcentagem = (somaMl * 100) / total
-    //     setPorcentagem(calculoPorcentagem)
-    // }
-
     useEffect(() => {
-        // contaPorcetagem()
         contaMl();
     }, [atualizarDados]);
 
@@ -68,7 +72,7 @@ export default function TelaInicio() {
     return (
         <View style={styles.container}>
             <View style={styles.containerInformacao}>
-                <Text style={styles.meta}>Meta: 1882 ml</Text>
+                <Text style={styles.meta}>Meta: {metaDiaria} ml</Text>
                 <View style={{ flexDirection: 'row', alignItems: 'baseline' }}>
                     {isLoading ? (
                         <ActivityIndicator size='large' />
@@ -99,6 +103,3 @@ export default function TelaInicio() {
         </View>
     )
 }
-
-
-// 2D4F63

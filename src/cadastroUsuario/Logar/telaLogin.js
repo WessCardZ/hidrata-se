@@ -25,7 +25,7 @@ export default function TelaLogin() {
                     senha: senha,
                 })
             });
-            console.log('Chamou')
+            // console.log('Chamou')
 
             if (response.status === 200) {
                 const responseData = await response.json();

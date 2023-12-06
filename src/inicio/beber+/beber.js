@@ -3,6 +3,7 @@ import styles from "./style";
 import { Button } from "react-native-paper";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 export default function TelaBeber() {
@@ -10,8 +11,9 @@ export default function TelaBeber() {
     const [ml, setMl] = useState('')
 
     const createPost = async () => {
+        const userId = await AsyncStorage.getItem('userId')
         try {
-            const response = await fetch('https://aguaprojeto.onrender.com/registro-agua', {
+            const response = await fetch(`https://aguaprojeto.onrender.com/registro-agua/${userId}`, {
                 method: 'POST',
                 headers: { 'Content-type': 'application/json' },
                 body: JSON.stringify({

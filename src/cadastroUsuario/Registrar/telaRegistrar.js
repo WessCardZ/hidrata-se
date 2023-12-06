@@ -35,7 +35,7 @@ export default function TelaRegistro() {
                 }),
             })
             const json = await response.json()
-            console.log(json)
+            // console.log(json)
             alert('Conta criada com sucesso! Agora faça o login')
             navigation.navigate('TelaLogin')
         } catch (error) {
