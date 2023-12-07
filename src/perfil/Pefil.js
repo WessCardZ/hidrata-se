@@ -126,6 +126,91 @@ export default function TelaPerfil() {
 }
 
 const Modalhorario = ({ modalVisible, setModalVisible }) => {
+    const [peso, setPeso] = useState('')
+    const [meta, setMeta] = useState('')
+    const [acordar, setAcordar] = useState('')
+    const [dormir, setDormir] = useState('')
+
+    useEffect(() => {
+        getHorario()
+    }, [])
+
+    const getHorario = async () => {
+        const userId = await AsyncStorage.getItem('userId')
+        try {
+            const response = await fetch(`https://aguaprojeto.onrender.com/usuarioconfig/usuario/${userId}`)
+            const json = await response.json()
+            const acordar = json.horarioAcordar;
+            setAcordar(acordar)
+
+            const dormir = json.horarioDormir;
+            setDormir(dormir)
+
+            const pesoAtual = json.pesoAtual
+            setPeso(pesoAtual)
+
+            const metaD = json.metaDiaria
+            setMeta(metaD)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    const handleTrocaInputAcordar = (text) => {
+        //Remove qualquer caractere não numerico
+        const numericValue = text.replace(/[^0-9]/g, '')
+
+        // Garante que vai ta limitado a 4 dígitos
+        const limiteNumerico = numericValue.slice(0, 4)
+
+        const valorFormatado = formatarHora(limiteNumerico)
+
+        setAcordar(valorFormatado)
+    }
+
+    const handleTrocaInputDormir = (text) => {
+        //Remove qualquer caractere não numerico
+        const numericValue = text.replace(/[^0-9]/g, '')
+
+        // Garante que vai ta limitado a 4 dígitos
+        const limiteNumerico = numericValue.slice(0, 4)
+
+        const valorFormatado = formatarHora(limiteNumerico)
+
+        setDormir(valorFormatado)
+    }
+
+    const formatarHora = (value) => {
+        if (value.length <= 2) {
+            return value
+        } else {
+            const hora = value.slice(0, 2)
+            const minutos = value.slice(2, 4)
+            return `${hora}:${minutos}`
+        }
+    }
+
+    const putHorarios = async () => {
+        const userId = await AsyncStorage.getItem('userId')
+        try {
+            const response = await fetch(`https://aguaprojeto.onrender.com/usuarioconfig/usuario/${userId}`, {
+                method: 'PUT',
+                headers: { 'Content-type': 'application/json' },
+                body: JSON.stringify({
+                    pesoAtual: peso,
+                    horarioAcordar: acordar,
+                    horarioDormir: dormir,
+                    metaDiaria: meta
+                })
+            })
+            if (response.status === 204) {
+                setModalVisible(false)
+            }
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
     return (
         <KeyboardAvoidingView style={{}}>
             <Modal
@@ -148,8 +233,8 @@ const Modalhorario = ({ modalVisible, setModalVisible }) => {
                             </View>
 
                             <View style={style.inputs}>
-                                <TextInput keyboardType="numeric" style={style.textoInput} maxLength={5} ></TextInput>
-                                <TextInput keyboardType="numeric" style={style.textoInput} maxLength={5} ></TextInput>
+                                <TextInput keyboardType="numeric" style={style.textoInput} maxLength={5} value={acordar} onChangeText={handleTrocaInputAcordar}></TextInput>
+                                <TextInput keyboardType="numeric" style={style.textoInput} maxLength={5} value={dormir} onChangeText={handleTrocaInputDormir}></TextInput>
                             </View>
                         </View>
 
@@ -277,7 +362,6 @@ const ModalMeta = ({ modalMetaVisible, setModalMetaVisible }) => {
             setPeso(pesoAtual)
 
             const metaD = json.metaDiaria
-            console.log(metaD)
             setMeta(metaD.toString())
 
             const horarioAcordar = json.horarioAcordar
