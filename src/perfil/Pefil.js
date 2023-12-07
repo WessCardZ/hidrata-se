@@ -259,6 +259,61 @@ const ModalPeso = ({ modalPesoVisible, setModalPesoVisible }) => {
 }
 
 const ModalMeta = ({ modalMetaVisible, setModalMetaVisible }) => {
+    const [peso, setPeso] = useState('')
+    const [meta, setMeta] = useState('')
+    const [acordar, setAcordar] = useState('')
+    const [dormir, setDormir] = useState('')
+
+    useEffect(() => {
+        getUsuarioConfig()
+    }, [])
+
+    const getUsuarioConfig = async () => {
+        const userId = await AsyncStorage.getItem('userId')
+        try {
+            const response = await fetch(`https://aguaprojeto.onrender.com/usuarioconfig/usuario/${userId}`)
+            const json = await response.json()
+            const pesoAtual = json.pesoAtual
+            setPeso(pesoAtual)
+
+            const metaD = json.metaDiaria
+            console.log(metaD)
+            setMeta(metaD.toString())
+
+            const horarioAcordar = json.horarioAcordar
+            const [acordarHoras, acordarMinutos] = horarioAcordar.split(':')
+            const formatoAcordar = `${acordarHoras}${acordarMinutos}`
+            setAcordar(formatoAcordar)
+
+            const horarioDormir = json.horarioDormir
+            const [dormirHoras, dormirMinutos] = horarioDormir.split(':')
+            const formatoDormir = `${dormirHoras}${dormirMinutos}`
+            setDormir(formatoDormir)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+    const putMeta = async () => {
+        const userId = await AsyncStorage.getItem('userId')
+        try {
+            const response = await fetch(`https://aguaprojeto.onrender.com/usuarioconfig/usuario/${userId}`, {
+                method: 'PUT',
+                headers: { 'Content-type': 'application/json' },
+                body: JSON.stringify({
+                    pesoAtual: peso,
+                    horarioAcordar: acordar,
+                    horarioDormir: dormir,
+                    metaDiaria: meta
+                })
+            })
+            if (response.status === 204) {
+                setModalMetaVisible(false)
+            }
+            console.log('status:' + response.status)
+        } catch (error) {
+            console.error(error)
+        }
+    }
     return (
         <KeyboardAvoidingView style={{}}>
             <Modal
@@ -275,14 +330,14 @@ const ModalMeta = ({ modalMetaVisible, setModalMetaVisible }) => {
                         </View>
 
                         <View style={style.inputModal}>
-                            <TextInput keyboardType="numeric" style={style.textoInputMeta}>1822</TextInput>
+                            <TextInput keyboardType="numeric" style={style.textoInputMeta} value={meta} onChangeText={(text) => setMeta(text)}></TextInput>
                             <Text style={style.Ml}>ML</Text>
                         </View>
                         <Pressable style={style.botaoModal}>
                             <Pressable onPress={() => setModalMetaVisible(false)} style={style.containerBotaoModal}>
                                 <Text style={style.textoBotaoModal}>Cancelar</Text>
                             </Pressable>
-                            <Pressable onPress={() => alert('ala teu tio')} style={style.containerBotaoModal2} >
+                            <Pressable onPress={() => putMeta()} style={style.containerBotaoModal2} >
                                 <Text style={style.textoBotaoModal}>Salvar</Text>
                             </Pressable>
                         </Pressable>
