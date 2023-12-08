@@ -4,18 +4,21 @@ import GoogleFonts from "../../components/GoogleFonts";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ActivityIndicator } from "react-native-paper";
 
 export default function TelaLogin() {
     const navigation = useNavigation()
     const tst = GoogleFonts()
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+    const [isLoading, setIsLoading] = useState(false)
 
     if (!tst) {
         return null
     }
 
     const fazerLogin = async () => {
+        setIsLoading(true)
         try {
             const response = await fetch('https://aguaprojeto.onrender.com/auth/login', {
                 method: "POST",
@@ -25,7 +28,6 @@ export default function TelaLogin() {
                     senha: senha,
                 })
             });
-            // console.log('Chamou')
 
             if (response.status === 200) {
                 const responseData = await response.json();
@@ -57,6 +59,8 @@ export default function TelaLogin() {
             }
         } catch (error) {
             console.error(error)
+        } finally {
+            setIsLoading(false)
         }
     }
     return (
@@ -89,7 +93,11 @@ export default function TelaLogin() {
             </View>
             <View style={style.containerBotao}>
                 <TouchableOpacity style={style.botao} onPress={() => fazerLogin()}>
-                    <Text style={style.textoBotao}>Fazer Login</Text>
+                    {isLoading ? (
+                        <ActivityIndicator size='default' />
+                    ) : (
+                        <Text style={style.textoBotao}>Fazer Login</Text>
+                    )}
                 </TouchableOpacity>
 
                 <Pressable>
