@@ -2,45 +2,36 @@ import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import style from './style.js'
 import GoogleFonts from '../../components/GoogleFonts/index.js';
 import { useNavigation } from '@react-navigation/native';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 function Pesoatual() {
-    const navigation = useNavigation()
-    const [peso, setPeso] = useState('')
+    const navigation = useNavigation();
+    const [peso, setPeso] = useState('');
 
-
-    const handleTrocaInput = (text) => {
-        //Remove qualquer caractere não numerico
+    const handleTrocaInput = useCallback((text) => {
         const numericValue = text.replace(/[^0-9]/g, '');
-
-        //Formata o valor para exibir os dois últimos dígitos
-        const formattedValue = formantandoKg(numericValue, 2)
-
+        const formattedValue = formatandoKg(numericValue, 2);
         setPeso(formattedValue);
-    }
+    }, []);
 
-    const formantandoKg = (value, decimalPlaces) => {
-        // Calcula 10 elevado à potência de decimalPlaces e converte o valor dividindo pelo resultado de Math.pow
-        const floatValue = parseFloat(value) / Math.pow(10, decimalPlaces)
-        return floatValue.toFixed(decimalPlaces)
-    }
+    const formatandoKg = (value, decimalPlaces) => {
+        const floatValue = parseFloat(value) / Math.pow(10, decimalPlaces);
+        return floatValue.toFixed(decimalPlaces);
+    };
 
-    const handleNavigation = () => {
+    const handleNavigation = useCallback(() => {
         const pesoNumero = parseFloat(peso);
 
         if (!isNaN(pesoNumero)) {
             navigation.navigate('TelaHorarios', { peso: pesoNumero });
         } else {
-            console.error('Peso inválido')
+            console.error('Peso inválido');
         }
-    }
+    }, [navigation, peso]);
 
-    const tst = GoogleFonts()
+    const tst = GoogleFonts();
 
-    if (!tst) {
-        return null
-    }
-    return (
+    return tst ? (
         <View style={style.container}>
             <View style={style.containerSecundario}>
                 <Text style={style.titulo}>Seu peso atual</Text>
@@ -50,7 +41,15 @@ function Pesoatual() {
                 </View>
 
                 <View style={style.containerInput}>
-                    <TextInput style={style.inputkg} placeholder='60.00' keyboardType='decimal-pad' maxLength={6} textAlign='left' value={peso} onChangeText={handleTrocaInput}></TextInput>
+                    <TextInput
+                        style={style.inputkg}
+                        placeholder='60.00'
+                        keyboardType='decimal-pad'
+                        maxLength={6}
+                        textAlign='left'
+                        value={peso}
+                        onChangeText={handleTrocaInput}
+                    />
                     <Text style={style.kg}>Kg</Text>
                 </View>
 
@@ -59,10 +58,9 @@ function Pesoatual() {
                 </TouchableOpacity>
             </View>
         </View>
-    )
+    ) : null;
 }
 
-
-export default Pesoatual
+export default Pesoatual;
 
 

@@ -74,6 +74,7 @@ const TelaLogin = () => {
                         placeholder="Digite seu email"
                         onChangeText={setEmail}
                         value={email}
+                        keyboardType="email-address"
                     />
                 </View>
                 <View>
