@@ -38,8 +38,10 @@ export default function TelaLogin() {
                 realizarLogin()
             } else if (response.status === 404) {
                 alert("Erro desconhecido. Tente novamente mais tarde.")
+                setIsLoading(false)
             } else {
                 alert("Conta não encontrada. Verifique suas credenciais. ")
+                setIsLoading(false)
             }
         } catch (error) {
             console.error(error)
@@ -94,7 +96,7 @@ export default function TelaLogin() {
             <View style={style.containerBotao}>
                 <TouchableOpacity style={style.botao} onPress={() => fazerLogin()}>
                     {isLoading ? (
-                        <ActivityIndicator size='default' />
+                        <ActivityIndicator size='small' />
                     ) : (
                         <Text style={style.textoBotao}>Fazer Login</Text>
                     )}

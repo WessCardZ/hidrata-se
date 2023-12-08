@@ -3,6 +3,7 @@ import style from "./style";
 import GoogleFonts from "../../components/GoogleFonts";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useState } from "react";
+import { ActivityIndicator } from "react-native-paper";
 
 export default function TelaRegistro() {
     const navigation = useNavigation()
@@ -12,6 +13,7 @@ export default function TelaRegistro() {
     const [senha, setSenha] = useState('')
     const [confirmarSenha, setConfirmarSenha] = useState('')
     const [senhaMatch, setSenhaMatch] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
 
     if (!tst) {
         return null
@@ -24,6 +26,7 @@ export default function TelaRegistro() {
 
 
     const criarConta = async () => {
+        setIsLoading(true)
         try {
             const response = await fetch('https://aguaprojeto.onrender.com/usuario', {
                 method: 'POST',
@@ -34,12 +37,21 @@ export default function TelaRegistro() {
                     senha: confirmarSenha
                 }),
             })
-            const json = await response.json()
-            // console.log(json)
-            alert('Conta criada com sucesso! Agora faça o login')
-            navigation.navigate('TelaLogin')
+
+            if (response.status === 201) {
+                alert('Conta criada com sucesso! Agora faça o login')
+                navigation.navigate('TelaLogin')
+                setIsLoading(false)
+            } else {
+                alert('Verifique se as suas credenciais estão corretas.')
+                setIsLoading(false)
+            }
+
+
         } catch (error) {
             console.error(error)
+        } finally {
+            setIsLoading(false)
         }
     }
 
@@ -57,6 +69,7 @@ export default function TelaRegistro() {
                         placeholder="Digite seu email"
                         onChangeText={(text) => setEmail(text)}
                         value={email}
+                        keyboardType="email-address"
                     />
                 </View>
                 <View>
@@ -91,8 +104,12 @@ export default function TelaRegistro() {
 
             </View>
             <View style={style.containerBotao}>
-                <TouchableOpacity style={style.botao} onPress={() => criarConta()}>
-                    <Text style={style.textoBotao}>Criar conta</Text>
+                <TouchableOpacity style={[!senhaMatch ? style.botaoDesabilitado : style.botao]} disabled={!senhaMatch} onPress={() => criarConta()}>
+                    {isLoading ? (
+                        <ActivityIndicator size={'small'} />
+                    ) : (
+                        <Text style={style.textoBotao}>Criar conta</Text>
+                    )}
                 </TouchableOpacity>
 
                 <Pressable onPress={() => navigation.navigate('TelaLogin')}>

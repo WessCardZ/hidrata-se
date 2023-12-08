@@ -72,6 +72,14 @@ const style = StyleSheet.create({
         fontFamily: 'Montserrat_500Medium',
         fontSize: 16,
         color: '#2D4F63'
+    },
+    botaoDesabilitado: {
+        width: 310,
+        height: 47,
+        backgroundColor: '#696969',
+        borderRadius: 15,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 })
 
