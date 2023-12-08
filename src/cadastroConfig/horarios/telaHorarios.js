@@ -2,100 +2,81 @@ import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import style from './style.js';
 import GoogleFonts from '../../components/GoogleFonts/index.js';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ActivityIndicator } from 'react-native-paper';
 
 function Horarios() {
-    const navigation = useNavigation()
-    const [horarioAcordar, setHorarioAcordar] = useState('')
-    const [horarioDormir, setHorarioDormir] = useState('')
-    const [meta, setMeta] = useState(0)
+    const navigation = useNavigation();
     const route = useRoute();
     const { peso } = route.params;
+    const [horarioAcordar, setHorarioAcordar] = useState('');
+    const [horarioDormir, setHorarioDormir] = useState('');
+    const [meta, setMeta] = useState(0);
+    const [isLoading, setLoading] = useState(false)
 
-
-    const handleTrocaInputAcordar = (text) => {
-        //Remove qualquer caractere não numerico
-        const numericValue = text.replace(/[^0-9]/g, '')
-
-        // Garante que vai ta limitado a 4 dígitos
-        const limiteNumerico = numericValue.slice(0, 4)
-
-        const valorFormatado = formatarHora(limiteNumerico)
-
-        setHorarioAcordar(valorFormatado)
-    }
-
-    const handleTrocaInputDormir = (text) => {
-        //Remove qualquer caractere não numerico
-        const numericValue = text.replace(/[^0-9]/g, '')
-
-        // Garante que vai ta limitado a 4 dígitos
-        const limiteNumerico = numericValue.slice(0, 4)
-
-        const valorFormatado = formatarHora(limiteNumerico)
-
-        setHorarioDormir(valorFormatado)
-    }
+    const handleTrocaInput = useCallback((text, setFunction) => {
+        const numericValue = text.replace(/[^0-9]/g, '');
+        const limiteNumerico = numericValue.slice(0, 4);
+        const valorFormatado = formatarHora(limiteNumerico);
+        setFunction(valorFormatado);
+    }, []);
 
     const formatarHora = (value) => {
         if (value.length <= 2) {
-            return value
+            return value;
         } else {
-            const hora = value.slice(0, 2)
-            const minutos = value.slice(2)
-            return `${hora}:${minutos}`
+            const hora = value.slice(0, 2);
+            const minutos = value.slice(2);
+            return `${hora}:${minutos}`;
         }
-    }
+    };
 
-    const calcularMeta = () => {
-        const calculo = peso * 35
-        setMeta(calculo)
-    }
+    const calcularMeta = useCallback(() => {
+        const calculo = peso * 35;
+        setMeta(calculo);
+    }, [peso]);
 
     useEffect(() => {
-        calcularMeta()
-    }, [])
+        calcularMeta();
+    }, [calcularMeta]);
 
+    const criarConta = useCallback(async () => {
+        const userId = await AsyncStorage.getItem('userId');
+        setLoading(true)
 
-    const criarConta = async () => {
-        const userId = await AsyncStorage.getItem('userId')
-        // console.log(userId)
         try {
             const response = await fetch(`http://aguaprojeto.onrender.com/usuarioconfig/${userId}`, {
                 method: 'POST',
                 headers: { 'Content-type': 'application/json' },
                 body: JSON.stringify({
                     pesoAtual: peso,
-                    horarioAcordar: horarioAcordar,
-                    horarioDormir: horarioDormir,
-                    metaDiaria: meta
+                    horarioAcordar,
+                    horarioDormir,
+                    metaDiaria: meta,
                 }),
-            })
+            });
+
             if (!response.ok) {
-                console.error(`Erro do servidor: ${response.status}`)
+                console.error(`Erro do servidor: ${response.status}`);
             } else {
                 const json = await response.json();
-                console.log(json)
-
-                navigation.navigate('TelaMeta')
+                console.log(json);
+                navigation.navigate('TelaMeta');
             }
         } catch (error) {
-            console.error('erro ao criar conta:', error)
+            console.error('Erro ao criar conta:', error);
+        } finally {
+            setLoading(false)
         }
-    }
+    }, [navigation, peso, horarioAcordar, horarioDormir, meta]);
 
+    const tst = GoogleFonts();
 
-    const tst = GoogleFonts()
-
-    if (!tst) {
-        return null
-    }
-    return (
+    return tst ? (
         <View style={style.container}>
             <View style={style.containerSecundario}>
                 <Text style={style.titulo}>Qual horário você dorme e acorda?</Text>
-                <Text>{peso}</Text>
 
                 <View style={style.containerAviso}>
                     <Text style={style.aviso}>A pergunta visa evitar notificações durante o sono para não atrapalhar o descanso.</Text>
@@ -114,7 +95,8 @@ function Horarios() {
                                 keyboardType='numeric'
                                 maxLength={5}
                                 value={horarioAcordar}
-                                onChangeText={handleTrocaInputAcordar}></TextInput>
+                                onChangeText={(text) => handleTrocaInput(text, setHorarioAcordar)}
+                            />
                         </View>
                         <View style={style.containerInputs}>
                             <TextInput
@@ -123,20 +105,20 @@ function Horarios() {
                                 keyboardType='numeric'
                                 maxLength={5}
                                 value={horarioDormir}
-                                onChangeText={handleTrocaInputDormir}></TextInput>
+                                onChangeText={(text) => handleTrocaInput(text, setHorarioDormir)}
+                            />
                         </View>
                     </View>
                 </View>
 
-                <TouchableOpacity style={style.botao} onPress={() => criarConta()}>
-                    <Text style={style.textoBotao}>Próximo</Text>
+                <TouchableOpacity style={style.botao} onPress={criarConta}>
+                    {isLoading ? <ActivityIndicator size={"small"} /> : <Text style={style.textoBotao}>Finalizar</Text>}
                 </TouchableOpacity>
             </View>
         </View>
-    )
+    ) : null;
 }
 
-
-export default Horarios
+export default Horarios;
 
 
