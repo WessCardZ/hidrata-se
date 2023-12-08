@@ -1,7 +1,7 @@
 import { Pressable, Text, TextInput, TouchableOpacity, View } from "react-native";
 import style from "./style";
 import GoogleFonts from "../../components/GoogleFonts";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { useCallback, useState } from "react";
 import { ActivityIndicator } from "react-native-paper";
 
