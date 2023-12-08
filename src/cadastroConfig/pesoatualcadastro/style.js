@@ -19,13 +19,11 @@ const style = StyleSheet.create({
         color: '#2D4F63'
     },
     containerAviso: {
-        // borderWidth: 1,
         maxWidth: 283,
         minWidth: 283,
         minHeight: 66,
         maxHeight: 66,
         justifyContent: 'center',
-        // alignItems: 'center',
         backgroundColor: '#AAD8F2',
         borderRadius: 8
     },
@@ -48,7 +46,6 @@ const style = StyleSheet.create({
         flexDirection: 'row'
     },
     inputkg: {
-        // borderWidth: 1,
         maxWidth: 100,
         minWidth: 100,
         fontFamily: 'Montserrat_700Bold',
@@ -75,7 +72,5 @@ const style = StyleSheet.create({
         color: '#fff'
     },
 });
-
-// AAD8F2
 
 export default style;
