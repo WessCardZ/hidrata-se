@@ -19,13 +19,11 @@ const style = StyleSheet.create({
         color: '#2D4F63'
     },
     containerAviso: {
-        // borderWidth: 1,
         maxWidth: 283,
         minWidth: 283,
         minHeight: 66,
         maxHeight: 66,
         justifyContent: 'center',
-        // alignItems: 'center',
         backgroundColor: '#AAD8F2',
         borderRadius: 8
     },
@@ -38,7 +36,6 @@ const style = StyleSheet.create({
     containerInformacao: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        // borderWidth: 1,
         maxWidth: 283,
         minWidth: 283,
     },
@@ -48,7 +45,6 @@ const style = StyleSheet.create({
         color: '#F2F2F2'
     },
     containerHorarios: {
-        // borderWidth: 1,
         maxWidth: 283,
         minWidth: 283,
         minHeight: 51,
@@ -69,7 +65,6 @@ const style = StyleSheet.create({
         alignItems: 'center'
     },
     inputHorario: {
-        // borderWidth: 1,
         maxWidth: 85,
         minWidth: 85,
         fontFamily: 'Montserrat_700Bold',
@@ -90,7 +85,5 @@ const style = StyleSheet.create({
         color: '#fff'
     },
 });
-
-// AAD8F2
 
 export default style;
