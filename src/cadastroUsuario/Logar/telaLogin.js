@@ -60,53 +60,49 @@ const TelaLogin = () => {
         }
     }, [navigation]);
 
-    return (
+    return tst ? (
         <View style={style.container}>
-            {tst ? (
-                <>
-                    <View style={style.containerTitulo}>
-                        <Text style={style.titulo}>Hidrata-se</Text>
-                    </View>
+            <View style={style.containerTitulo}>
+                <Text style={style.titulo}>Hidrata-se</Text>
+            </View>
 
-                    <View style={style.containerInput}>
-                        <View>
-                            <Text style={style.label}>Email</Text>
-                            <TextInput
-                                style={style.input}
-                                placeholder="Digite seu email"
-                                onChangeText={setEmail}
-                                value={email}
-                            />
-                        </View>
-                        <View>
-                            <Text style={style.label}>Senha</Text>
-                            <TextInput
-                                style={style.input}
-                                placeholder="Digite uma senha"
-                                onChangeText={setSenha}
-                                value={senha}
-                                secureTextEntry
-                            />
-                        </View>
-                    </View>
+            <View style={style.containerInput}>
+                <View>
+                    <Text style={style.label}>Email</Text>
+                    <TextInput
+                        style={style.input}
+                        placeholder="Digite seu email"
+                        onChangeText={setEmail}
+                        value={email}
+                    />
+                </View>
+                <View>
+                    <Text style={style.label}>Senha</Text>
+                    <TextInput
+                        style={style.input}
+                        placeholder="Digite uma senha"
+                        onChangeText={setSenha}
+                        value={senha}
+                        secureTextEntry
+                    />
+                </View>
+            </View>
 
-                    <View style={style.containerBotao}>
-                        <TouchableOpacity style={style.botao} onPress={fazerLogin}>
-                            {isLoading ? <ActivityIndicator size="small" /> : <Text style={style.textoBotao}>Fazer Login</Text>}
-                        </TouchableOpacity>
+            <View style={style.containerBotao}>
+                <TouchableOpacity style={style.botao} onPress={fazerLogin}>
+                    {isLoading ? <ActivityIndicator size="small" /> : <Text style={style.textoBotao}>Fazer Login</Text>}
+                </TouchableOpacity>
 
-                        <Pressable>
-                            <Text style={style.texto}>Esqueceu a senha?</Text>
-                        </Pressable>
+                <Pressable>
+                    <Text style={style.texto}>Esqueceu a senha?</Text>
+                </Pressable>
 
-                        <Pressable onPress={() => navigation.navigate('TelaCadastro')}>
-                            <Text style={style.texto}>Criar conta!</Text>
-                        </Pressable>
-                    </View>
-                </>
-            ) : null}
+                <Pressable onPress={() => navigation.navigate('TelaCadastro')}>
+                    <Text style={style.texto}>Criar conta!</Text>
+                </Pressable>
+            </View>
         </View>
-    );
+    ) : null;
 };
 
 export default TelaLogin;
