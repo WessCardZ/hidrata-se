@@ -10,10 +10,7 @@ function Cadastroinicio() {
     const tst = GoogleFonts()
     const navigation = useNavigation()
 
-    if (!tst) {
-        return null
-    }
-    return (
+    return tst ? (
         <View style={style.container}>
             <View style={style.containerSecundario}>
                 <Text style={style.titulo}>Vamos começar</Text>
@@ -23,7 +20,7 @@ function Cadastroinicio() {
                 </TouchableOpacity>
             </View>
         </View>
-    )
+    ) : null
 }
 
 
