@@ -11,7 +11,10 @@ const styles = StyleSheet.create({
         flex: 0.5,
         justifyContent: 'center',
         alignItems: 'center',
-        // borderWidth: 2
+    },
+    containerMl: {
+        flexDirection: 'row',
+        alignItems: 'baseline'
     },
     meta: {
         fontFamily: 'Montserrat_400Regular',
@@ -37,6 +40,14 @@ const styles = StyleSheet.create({
         height: 39,
         backgroundColor: '#1897F2',
     },
+    botao: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 154,
+        height: 56,
+        bottom: 17,
+        position: 'absolute',
+    }
 })
 
 export default styles
