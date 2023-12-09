@@ -1,5 +1,4 @@
-import { Pressable, View, Text } from "react-native"
-import { useFonts, Montserrat_700Bold, Montserrat_400Regular } from "@expo-google-fonts/montserrat";
+import { View, Text } from "react-native"
 import styles from "./style"
 import { useState } from "react";
 import { Switch } from "react-native-paper";
@@ -8,11 +7,7 @@ import GoogleFonts from "../../components/GoogleFonts";
 export default function TelaSonsevibracao() {
     const fonts = GoogleFonts()
 
-    if (!fonts) {
-        return null
-    }
-
-    return (
+    return fonts ? (
         <View style={styles.container}>
             <View>
                 <Text style={styles.titulo}>Lembretes</Text>
@@ -43,13 +38,11 @@ export default function TelaSonsevibracao() {
 
             </View>
         </View>
-    )
+    ) : null
 }
 
 const Botao = () => {
     const [botaoOn, setBotaoOn] = useState(true)
-
     const trocarBotao = () => setBotaoOn(!botaoOn)
-
     return <Switch value={botaoOn} onValueChange={trocarBotao} color="#00A1FF" />
 }
