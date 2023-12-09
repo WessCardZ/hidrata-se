@@ -6,14 +6,9 @@ import { Switch } from "react-native-paper"
 import GoogleFonts from "../../components/GoogleFonts";
 
 export default function TelaLembretes() {
-
     const fonts = GoogleFonts()
 
-    if (!fonts) {
-        return null
-    }
-
-    return (
+    return fonts ? (
         <View style={styles.container}>
             <View style={{ marginTop: 30 }}>
                 <Lista texto='Após acordar' />
@@ -29,14 +24,12 @@ export default function TelaLembretes() {
                 <Lista texto='Meta atingida' />
             </View>
         </View>
-    )
+    ) : null
 }
 
 const Botao = () => {
     const [botaoOn, setBotaoOn] = useState(true)
-
     const trocarBotao = () => setBotaoOn(!botaoOn)
-
     return <Switch value={botaoOn} onValueChange={trocarBotao} color="#00A1FF" />
 }
 
