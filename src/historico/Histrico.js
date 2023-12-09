@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, Modal, Pressable, TextInput } from 'react-native';
-import { useFonts, Montserrat_700Bold, Montserrat_400Regular, Montserrat_600SemiBold, Montserrat_500Medium } from "@expo-google-fonts/montserrat";
 import { ActivityIndicator, Button, IconButton } from "react-native-paper";
 import style from './style1';
 import { useFocusEffect } from '@react-navigation/native';
@@ -25,7 +24,6 @@ const Telahistorico = () => {
 
     function handleSetAtulizarLista(state) {
         setAtualizarLista(state)
-        console.log('chamou')
     }
 
     const getHistorico = async () => {
@@ -50,35 +48,39 @@ const Telahistorico = () => {
 
     const fonts = GoogleFonts()
 
-    if (!fonts) {
-        return null
-    }
-
     const Historico = ({ id, quantidadeML, dataHoraConsumo }) => {
         const historico = new Date(dataHoraConsumo);
         const options = { day: 'numeric', month: 'numeric', hour: '2-digit', minute: '2-digit' };
         const dataHoraConsumoFormatado = historico.toLocaleDateString('pt-BR', options);
 
-        return (
+        return fonts ? (
             <View style={style.listahistorico}>
                 <View>
                     <Text style={style.ml}>{quantidadeML}</Text>
                     <Text style={style.hora}>{dataHoraConsumoFormatado}</Text>
                 </View>
                 <View style={style.iconContainer}>
-                    <IconButton icon={"pencil"} size={30} iconColor="#fff" onPress={() => {
-                        setInputMl(quantidadeML)
-                        setIdHistorico(id);
-                        setModalAtualizarVisible(true)
-                    }} />
-                    <IconButton icon={"trash-can-outline"} size={30} iconColor="#FF8080" onPress={() => {
-                        setIdHistorico(id);
-                        setModalVisible(true);
-                    }} />
+                    <IconButton
+                        icon={"pencil"}
+                        size={30}
+                        iconColor="#fff"
+                        onPress={() => {
+                            setInputMl(quantidadeML)
+                            setIdHistorico(id);
+                            setModalAtualizarVisible(true)
+                        }} />
+                    <IconButton
+                        icon={"trash-can-outline"}
+                        size={30}
+                        iconColor="#FF8080"
+                        onPress={() => {
+                            setIdHistorico(id);
+                            setModalVisible(true);
+                        }} />
                 </View>
 
             </View>
-        )
+        ) : null;
     }
 
     return (
@@ -87,16 +89,15 @@ const Telahistorico = () => {
             <View style={style.containermeio}>
                 <ModalDeletar modalVisible={modalVisible} setModalVisible={setModalVisible} idHistorico={idHistorico} state={handleSetAtulizarLista} />
                 <ModalAtualizar modalAtualizarVisible={modalAtualizarVisible} idHistorico={idHistorico} setModalAtualizarVisible={setModalAtualizarVisible} inputML={inputMl} state={handleSetAtulizarLista} />
-                {isLoading ? (
-                    <ActivityIndicator size='large' />
-                ) : (
-                    <FlatList
-                        data={historico}
-                        keyExtractor={({ id }) => id}
-                        renderItem={({ item }) => (
-                            <Historico id={item.id} quantidadeML={item.quantidadeML} dataHoraConsumo={item.dataHoraConsumo} />
-                        )}
-                    />)}
+                {isLoading ? (<ActivityIndicator size='large' />)
+                    : (
+                        <FlatList
+                            data={historico}
+                            keyExtractor={({ id }) => id}
+                            renderItem={({ item }) => (
+                                <Historico id={item.id} quantidadeML={item.quantidadeML} dataHoraConsumo={item.dataHoraConsumo} />
+                            )}
+                        />)}
             </View>
         </View>
     );
@@ -111,10 +112,7 @@ const ModalDeletar = ({ modalVisible, setModalVisible, idHistorico, state }) => 
                 method: 'DELETE',
                 headers: { 'Content-type': 'application/json' },
             });
-            console.log('Apagado com sucesso')
             state(new Date());
-
-
         } catch (error) {
             console.error(error);
         }
@@ -163,7 +161,6 @@ const ModalAtualizar = ({ modalAtualizarVisible, setModalAtualizarVisible, idHis
                     quantidadeML: ml
                 })
             })
-            console.log('Atualizado')
             state(new Date())
         } catch (error) {
             console.error(error)
@@ -193,7 +190,6 @@ const ModalAtualizar = ({ modalAtualizarVisible, setModalAtualizarVisible, idHis
                             >{inputML}</TextInput>
                             <Text style={style.textoML}>ML</Text>
                         </View>
-                        {/* <TextInput style={style.inputHorario}>19:51</TextInput> */}
                     </View>
 
                     <View style={{ alignItems: 'center' }}>

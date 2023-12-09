@@ -55,7 +55,6 @@ const style = StyleSheet.create({
         width: 280,
         backgroundColor: 'white',
         borderRadius: 16,
-        // alignItems: 'center',
         justifyContent: "space-between"
 
     },
@@ -66,7 +65,6 @@ const style = StyleSheet.create({
         color: '#2D4F63',
     },
     caixaSubTitulo: {
-        // paddingTop: 17,
         maxWidth: 230,
         alignItems: 'center',
     },
@@ -79,9 +77,6 @@ const style = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         borderTopWidth: 2,
-        //width: '100%',
-        // flex: 1,
-        // marginTop: 32
     },
     textoBotaoModal1: {
         fontFamily: 'Montserrat_500Medium',
@@ -97,7 +92,6 @@ const style = StyleSheet.create({
         justifyContent: 'center',
         textAlign: 'center',
         alignItems: 'center',
-        // backgroundColor: 'red',
         flex: 1,
     },
     containerBotaoModal2: {
@@ -106,7 +100,6 @@ const style = StyleSheet.create({
         textAlign: 'center',
         alignItems: 'center',
         borderLeftWidth: 2,
-        // backgroundColor: 'yellow',
         flex: 1,
     },
     containerInputs: {
