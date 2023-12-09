@@ -83,7 +83,6 @@ const style = StyleSheet.create({
         width: 280,
         backgroundColor: 'white',
         borderRadius: 16,
-        // alignItems: 'center',
         justifyContent: "space-between"
 
     },
@@ -96,9 +95,6 @@ const style = StyleSheet.create({
     inputs: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        // borderWidth: 2,
-        // width: '100%',
-        // marginTop: 10
     },
     textoInput: {
         fontFamily: 'Montserrat_500Medium',
@@ -108,9 +104,6 @@ const style = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         borderTopWidth: 2,
-        //width: '100%',
-        // flex: 1,
-        // marginTop: 32
     },
     textoBotaoModal1: {
         fontFamily: 'Montserrat_500Medium',
@@ -121,7 +114,6 @@ const style = StyleSheet.create({
         justifyContent: 'center',
         textAlign: 'center',
         alignItems: 'center',
-        // backgroundColor: 'red',
         flex: 1,
     },
     containerBotaoModal2: {
@@ -130,14 +122,11 @@ const style = StyleSheet.create({
         textAlign: 'center',
         alignItems: 'center',
         borderLeftWidth: 2,
-        // backgroundColor: 'yellow',
         flex: 1,
     },
     inputModal: {
         flexDirection: 'row',
         justifyContent: 'center',
-        // width: '100%',
-        // paddingTop: 24,
     },
     textoInputModal: {
         fontFamily: 'Montserrat_500Medium',
