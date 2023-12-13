@@ -4,7 +4,7 @@ import GoogleFonts from "../../components/GoogleFonts";
 import { useNavigation } from "@react-navigation/native";
 import { useCallback, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { ActivityIndicator } from "react-native-paper";
+import { ActivityIndicator, IconButton } from "react-native-paper";
 
 const TelaLogin = () => {
     const navigation = useNavigation();
@@ -12,6 +12,8 @@ const TelaLogin = () => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [showSenha, setShowSenha] = useState(true);
+    const [icone, setIcone] = useState('eye-off')
 
     const fazerLogin = useCallback(async () => {
         setIsLoading(true);
@@ -60,6 +62,16 @@ const TelaLogin = () => {
         }
     }, [navigation]);
 
+    const mostrarSenha = () => {
+        if (showSenha == false) {
+            setIcone('eye-off')
+        }
+        else {
+            setIcone('eye')
+        }
+
+        setShowSenha(!showSenha)
+    }
     return tst ? (
         <View style={style.container}>
             <View style={style.containerTitulo}>
@@ -79,13 +91,18 @@ const TelaLogin = () => {
                 </View>
                 <View>
                     <Text style={style.label}>Senha</Text>
-                    <TextInput
-                        style={style.input}
-                        placeholder="Digite uma senha"
-                        onChangeText={setSenha}
-                        value={senha}
-                        secureTextEntry
-                    />
+                    <View style={{ flexDirection: 'row' }}>
+                        <TextInput
+                            style={style.input}
+                            placeholder="Digite uma senha"
+                            onChangeText={setSenha}
+                            value={senha}
+                            secureTextEntry={showSenha}
+                        />
+                        <View style={style.containerMostrarSenha}>
+                            <IconButton style={style.mostrarSenha} icon={icone} onPress={() => mostrarSenha()} />
+                        </View>
+                    </View>
                 </View>
             </View>
 
@@ -93,10 +110,6 @@ const TelaLogin = () => {
                 <TouchableOpacity style={style.botao} onPress={fazerLogin}>
                     {isLoading ? <ActivityIndicator size="small" /> : <Text style={style.textoBotao}>Fazer Login</Text>}
                 </TouchableOpacity>
-
-                <Pressable>
-                    <Text style={style.texto}>Esqueceu a senha?</Text>
-                </Pressable>
 
                 <Pressable onPress={() => navigation.navigate('TelaCadastro')}>
                     <Text style={style.texto}>Criar conta!</Text>

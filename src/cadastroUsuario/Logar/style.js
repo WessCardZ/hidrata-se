@@ -40,8 +40,8 @@ const style = StyleSheet.create({
     containerBotao: {
         alignItems: 'center',
         marginTop: 20,
-        maxHeight: 127,
-        minHeight: 127,
+        maxHeight: 88,
+        minHeight: 88,
         justifyContent: 'space-between'
     },
     botao: {
@@ -61,6 +61,16 @@ const style = StyleSheet.create({
         fontFamily: 'Montserrat_500Medium',
         fontSize: 16,
         color: '#2D4F63'
+    },
+    containerMostrarSenha: {
+        justifyContent: 'center',
+        position: 'absolute',
+        marginLeft: 260,
+        marginTop: 25
+    },
+    mostrarSenha: {
+        position: 'absolute',
+        margin: 0,
     }
 })
 
