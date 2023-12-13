@@ -38,6 +38,7 @@ export default function TelaBeber() {
                     placeholder="Inserir ML"
                     value={ml}
                     keyboardType="numeric"
+                    maxLength={4}
                     onChangeText={(text) => setMl(text)}
                 />
                 <Button style={styles.botao}
