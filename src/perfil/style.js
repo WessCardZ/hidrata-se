@@ -96,6 +96,9 @@ const style = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
     },
+    containerTextInput: {
+        maxWidth: 115, minWidth: 115
+    },
     textoInput: {
         fontFamily: 'Montserrat_500Medium',
         fontSize: 40,

@@ -84,20 +84,24 @@ const Modalhorario = ({ modalVisible, setModalVisible }) => {
                             </View>
 
                             <View style={style.inputs}>
-                                <TextInput
-                                    keyboardType="numeric"
-                                    style={style.textoInput}
-                                    maxLength={5}
-                                    value={acordar}
-                                    onChangeText={(text) => handleTrocaInput(text, setAcordar)}
-                                />
-                                <TextInput
-                                    keyboardType="numeric"
-                                    style={style.textoInput}
-                                    maxLength={5}
-                                    value={dormir}
-                                    onChangeText={(text) => handleTrocaInput(text, setDormir)}
-                                />
+                                <View style={style.containerTextInput}>
+                                    <TextInput
+                                        keyboardType="numeric"
+                                        style={style.textoInput}
+                                        maxLength={5}
+                                        value={acordar}
+                                        onChangeText={(text) => handleTrocaInput(text, setAcordar)}
+                                    />
+                                </View>
+                                <View style={style.containerTextInput}>
+                                    <TextInput
+                                        keyboardType="numeric"
+                                        style={style.textoInput}
+                                        maxLength={5}
+                                        value={dormir}
+                                        onChangeText={(text) => handleTrocaInput(text, setDormir)}
+                                    />
+                                </View>
                             </View>
                         </View>
 
