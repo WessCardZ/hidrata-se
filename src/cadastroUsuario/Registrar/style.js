@@ -17,8 +17,8 @@ const style = StyleSheet.create({
     },
     containerInput: {
         alignItems: 'center',
-        minHeight: 344,
-        maxHeight: 344,
+        minHeight: 254,
+        maxHeight: 254,
         justifyContent: 'space-between'
     },
     input: {

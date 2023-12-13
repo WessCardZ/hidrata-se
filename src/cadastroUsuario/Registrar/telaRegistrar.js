@@ -65,15 +65,6 @@ const TelaRegistro = () => {
                     />
                 </View>
                 <View>
-                    <Text style={style.label}>Usuário</Text>
-                    <TextInput
-                        style={style.input}
-                        placeholder="Digite um usuário"
-                        onChangeText={(text) => setUsuario(text)}
-                        value={usuario}
-                    />
-                </View>
-                <View>
                     <Text style={style.label}>Senha</Text>
                     <TextInput
                         style={style.input}
