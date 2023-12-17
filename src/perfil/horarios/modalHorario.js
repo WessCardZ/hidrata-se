@@ -71,7 +71,7 @@ const Modalhorario = ({ modalVisible, setModalVisible }) => {
     return (
         <KeyboardAvoidingView>
             <Modal animationType="fade" transparent={true} visible={modalVisible}>
-                <View style={style.fundoModa}>
+                <View style={style.fundoModal}>
                     <View style={style.modal}>
                         <View style={{ alignItems: 'center' }}>
                             <Text style={style.tituloModal}>Horários</Text>

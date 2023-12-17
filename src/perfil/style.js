@@ -71,7 +71,7 @@ const style = StyleSheet.create({
         fontSize: 12,
         fontFamily: 'Montserrat_400Regular'
     },
-    fundoModa: {
+    fundoModal: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
