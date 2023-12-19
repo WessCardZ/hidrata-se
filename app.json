@@ -4,10 +4,10 @@
     "slug": "hidrata-se",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/hidratase.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/hidratase.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -19,12 +19,18 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/hidratase.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.wesscardz.hidratase"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "0d229719-d92f-4092-af8d-90f879ff6fea"
+      }
     }
   }
 }

@@ -58,7 +58,7 @@ const ModalMeta = ({ modalMetaVisible, setModalMetaVisible }) => {
     return (
         <KeyboardAvoidingView>
             <Modal animationType="fade" transparent={true} visible={modalMetaVisible}>
-                <View style={style.fundoModa}>
+                <View style={style.fundoModal}>
                     <View style={style.modal}>
                         <View style={{ alignItems: 'center' }}>
                             <Text style={style.tituloModal}>Meta diária</Text>

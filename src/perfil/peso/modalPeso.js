@@ -58,7 +58,7 @@ const ModalPeso = ({ modalPesoVisible, setModalPesoVisible }) => {
     return (
         <KeyboardAvoidingView>
             <Modal animationType="fade" transparent={true} visible={modalPesoVisible}>
-                <View style={style.fundoModa}>
+                <View style={style.fundoModal}>
                     <View style={style.modal}>
                         <View style={{ alignItems: 'center' }}>
                             <Text style={style.tituloModal}>Peso</Text>

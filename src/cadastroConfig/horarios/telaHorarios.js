@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, Alert } from 'react-native';
 import style from './style.js';
 import GoogleFonts from '../../components/GoogleFonts/index.js';
 import { useNavigation, useRoute } from '@react-navigation/native';
@@ -60,8 +60,6 @@ function Horarios() {
             if (!response.ok) {
                 console.error(`Erro do servidor: ${response.status}`);
             } else {
-                const json = await response.json();
-                console.log(json);
                 navigation.navigate('TelaMeta');
             }
         } catch (error) {
